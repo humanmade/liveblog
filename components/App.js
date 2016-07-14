@@ -1,4 +1,5 @@
 import React from 'react'
+import api from 'wordpress-rest-api-oauth-1'
 import Header from './Header'
 import PostsList from './PostsList'
 import Welcome from './Welcome'
@@ -15,8 +16,11 @@ export default class App extends React.Component {
 	onConnect(url) {
 		this.setState({ url: url })
 
-		fetch( url + '/wp-json/wp/v2/posts?_embed', { credentials: "include" } )
-			.then( response => response.json() )
+		this.api = new api({
+			url: url
+		})
+
+		this.api.get( '/wp/v2/posts?_embed' )
 			.then( posts => this.setState( { posts: posts } ) )
 	}
 
