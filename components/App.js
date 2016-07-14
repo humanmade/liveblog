@@ -1,25 +1,38 @@
 import React from 'react'
+import Header from './Header'
 import PostsList from './PostsList'
+import Welcome from './Welcome'
 
 export default class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			posts: [],
+			posts: false,
+			url: ''
 		}
-
-		this.loadPosts()
 	}
 
-	loadPosts() {
-		fetch( 'https://demo.wp-api.org/wp-json/wp/v2/posts', { credentials: "include" } )
+	onConnect(url) {
+		this.setState({ url: url })
+
+		fetch( url + '/wp-json/wp/v2/posts?_embed', { credentials: "include" } )
 			.then( response => response.json() )
 			.then( posts => this.setState( { posts: posts } ) )
 	}
 
 	render() {
-		return <div>
-			<PostsList posts={this.state.posts} />
+		if (!this.state.url) {
+			return <Welcome onConnect={url => this.onConnect(url)} />
+		}
+
+		return <div className="app">
+			<Header />
+
+			{this.state.posts ? (
+				<PostsList posts={this.state.posts} />
+			) : (
+				<div><p>Loading...</p></div>
+			)}
 		</div>
 	}
 }
