@@ -5,7 +5,12 @@ export default class Post extends React.Component {
 	render() {
 		let { post } = this.props
 
-		return <div className="post">
+		let published = post.status === "published"
+
+		// fake it 'til we make it
+		published = post.id % 2
+
+		return <div className={published ? "post" : "post draft"}>
 			<header>
 				<img className="avatar" src={post._embedded.author[0].avatar_urls[48]} />
 				<div>

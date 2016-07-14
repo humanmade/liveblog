@@ -23,6 +23,11 @@ body {
 	padding: 1em;
 	margin-bottom: 1em;
 }
+.post.draft {
+	background: rgba(255, 255, 255, 0.5);
+	border-left: 0.2em solid #7DC9DA;
+	padding-left: 0.8em;
+}
 .post > header {
 	padding-left: 60px;
 }
