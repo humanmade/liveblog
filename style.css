@@ -38,10 +38,28 @@ body {
 .actions {
 	text-align: right;
 }
+.actions > * {
+	margin-left: 0.5em;
+}
 .action-like {
 	font-size: 2em;
 	border: 0;
 	background: transparent;
 	color: #d94e3a;
 	cursor: pointer;
+}
+button.primary, button.secondary {
+	font-size: 0.8em;
+	line-height: 2em;
+	border: 1px solid #d94e3a;
+	border-radius: 4px;
+	cursor: pointer;
+}
+button.primary {
+	background: #d94e3a;
+	color: #fff;
+}
+button.secondary {
+	background: transparent;
+	color: #d94e3a;
 }

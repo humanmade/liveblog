@@ -5,8 +5,8 @@ export default class PostBox extends React.Component {
 		return <div className="post-box">
 			<textarea rows={4} />
 			<p className="actions">
-				<button>Submit for Review</button>
-				<button>Publish</button>
+				<button className="secondary">Submit for Review</button>
+				<button className="primary">Publish</button>
 			</p>
 		</div>
 	}
