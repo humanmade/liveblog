@@ -12,7 +12,7 @@ export default class App extends React.Component {
 	}
 
 	loadPosts() {
-		fetch( 'https://demo.wp-api.org/wp-json/wp/v2/posts', { credentials: "include" } )
+		fetch( 'https://demo.wp-api.org/wp-json/wp/v2/posts?_embed', { credentials: "include" } )
 			.then( response => response.json() )
 			.then( posts => this.setState( { posts: posts } ) )
 	}
