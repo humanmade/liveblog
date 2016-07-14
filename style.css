@@ -2,8 +2,12 @@ body {
 	background: #f4efe6;
 }
 .app {
-	max-width: 960px;
+	max-width: 600px;
 	margin: 0 auto;
+}
+.post-box textarea {
+	width: 100%;
+	box-sizing: border-box;
 }
 .post-filter .group {
 	margin-right: 1em;
