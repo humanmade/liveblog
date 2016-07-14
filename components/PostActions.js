@@ -9,7 +9,7 @@ export default class PostActions extends React.Component {
 	}
 
 	render() {
-		let liked = false;
+		let liked = false
 		return <div className="actions">
 			<button
 				className="action-like"

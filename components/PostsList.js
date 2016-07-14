@@ -1,5 +1,5 @@
 import React from 'react'
-import Post from './Post';
+import Post from './Post'
 
 export default class PostsList extends React.Component {
 	render() {

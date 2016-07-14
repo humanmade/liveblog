@@ -3,7 +3,7 @@ import PostActions from './PostActions'
 
 export default class Post extends React.Component {
 	render() {
-		let { post } = this.props;
+		let { post } = this.props
 
 		return <div className="post">
 			<header>
