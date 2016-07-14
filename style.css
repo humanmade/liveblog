@@ -14,6 +14,7 @@ body {
 }
 .post-filter a:not(.active) {
 	text-decoration: underline;
+	cursor: pointer;
 }
 .post {
 	background: #fff;
@@ -42,4 +43,5 @@ body {
 	border: 0;
 	background: transparent;
 	color: #d94e3a;
+	cursor: pointer;
 }
