@@ -1,4 +1,5 @@
 import React from 'react'
+import PostActions from './PostActions'
 
 export default class Post extends React.Component {
 	render() {
@@ -14,6 +15,8 @@ export default class Post extends React.Component {
 			</header>
 
 			<div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />
+
+			<PostActions post={post} />
 		</div>
 	}
 }
