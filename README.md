@@ -1,6 +1,6 @@
 <table width="100%">
 	<tr>
-		<td align="left">
+		<td align="left" colspan="2">
 			<strong><a href="https://github.com/humanmade/liveblog/">Live Blog</a></strong><br />
 		  A simple, decoupled React app for live blogging in WordPress using the REST API
 		</td>
