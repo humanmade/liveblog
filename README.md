@@ -18,10 +18,14 @@
 This React app allows for Live Blogging on a WordPress site using the REST API.
 
 ## Requirements
-Requires React, Webpack and WordPress with REST API
+Locally, this requires Node with npm.
+
+The server you are connecting to requires the WP REST API v2 plugin to be active, and the OAuth 1.0a and Broker plugins to authenticate and use write methods.
 
 ## Installation
-Just install like any other plugin
+This repository is a static site that connects to a REST API-powered site.
+
+To run the application, clone the repository, install dependencies with `npm install`, then run `npm start` to run a local development server. This will start the application on port 3000, so access http://localhost:3000/ to view the application.
 
 ## Contributing
 Please feel free to fork and use this app on your own
