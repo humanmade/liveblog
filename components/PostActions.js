@@ -10,7 +10,7 @@ export default class PostActions extends React.Component {
 
 	render() {
 		let liked = false;
-		return <div className="post-actions">
+		return <div className="actions">
 			<button
 				className="action-like"
 				onClick={() => this.setState({liked: !this.state.liked})}

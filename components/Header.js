@@ -2,6 +2,13 @@ import React from 'react'
 import PostBox from './PostBox'
 
 export default class Header extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			user: null
+		}
+	}
+
 	render() {
 		let query = {
 			sort: 'date',
@@ -10,6 +17,11 @@ export default class Header extends React.Component {
 
 		return <header>
 			<h1>My Live Blog</h1>
+			{ this.state.user ? (
+				<PostBox />
+			) : (
+				<button onClick={() => this.setState({ user: true })}>Log in</button>
+			)}
 
 			<p className="post-filter">
 				<span className="group">
