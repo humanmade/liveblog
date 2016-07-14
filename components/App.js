@@ -18,7 +18,7 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		return <div>
+		return <div className="app">
 			<PostsList posts={this.state.posts} />
 		</div>
 	}

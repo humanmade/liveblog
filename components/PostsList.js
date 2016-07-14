@@ -5,7 +5,7 @@ export default class PostsList extends React.Component {
 	render() {
 		return <div>
 			{this.props.posts.map( post =>
-				<Post key={post.id}>{post.title.rendered}</Post>
+				<Post key={post.id} post={post} />
 			)}
 		</div>
 	}
