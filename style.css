@@ -70,3 +70,18 @@ button.secondary {
 	background: transparent;
 	color: #d94e3a;
 }
+.welcome {
+	max-width: 400px;
+	text-align: center;
+}
+.welcome .branding {
+	margin: 0 auto;
+	width: 300px;
+}
+.welcome .site-select {
+	display: flex;
+}
+.welcome .site-select input {
+	flex-grow: 1;
+	margin-right: 0.5em;
+}
