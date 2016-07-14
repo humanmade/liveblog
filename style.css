@@ -1,0 +1,35 @@
+body {
+	background: #f4efe6;
+}
+.app {
+	max-width: 960px;
+	margin: 0 auto;
+}
+.post {
+	background: #fff;
+	padding: 1em;
+	margin-bottom: 1em;
+}
+.post > header {
+	padding-left: 60px;
+}
+.post > header .avatar {
+	float: left;
+	margin-left: -60px;
+	width: 48px;
+	height: 48px;
+	border-radius: 24px;
+}
+.post > header p {
+	margin-top: 0;
+	margin-bottom: 0.5em;
+}
+.post-actions {
+	text-align: right;
+}
+.action-like {
+	font-size: 2em;
+	border: 0;
+	background: transparent;
+	color: #d94e3a;
+}
