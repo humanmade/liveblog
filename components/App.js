@@ -7,7 +7,7 @@ export default class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			posts: [],
+			posts: false,
 			url: ''
 		}
 	}
@@ -27,7 +27,12 @@ export default class App extends React.Component {
 
 		return <div className="app">
 			<Header />
-			<PostsList posts={this.state.posts} />
+
+			{this.state.posts ? (
+				<PostsList posts={this.state.posts} />
+			) : (
+				<div><p>Loading...</p></div>
+			)}
 		</div>
 	}
 }
