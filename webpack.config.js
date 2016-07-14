@@ -18,13 +18,23 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin()
 	],
 	module: {
-		loaders: [{
-			test: /\.js$/,
-			loader: 'babel',
-			exclude: /node_modules/,
-			query: {
-				presets: ['es2015', 'react']
+		loaders: [
+			{
+				test: /\.js$/,
+				loader: 'babel',
+				exclude: /node_modules/,
+				query: {
+					presets: ['es2015', 'react']
+				}
+			},
+			{
+				test: /\.jsx$/,
+				loader: 'babel',
+				include: /node_modules\/react-components\//,
+				query: {
+					presets: ['es2015', 'react']
+				}
 			}
-		}]
+		]
 	}
 }

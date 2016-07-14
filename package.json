@@ -22,7 +22,9 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "moment": "^2.14.1",
     "react": "^15.2.1",
+    "react-components": "^0.4.0",
     "react-dom": "^15.2.1"
   }
 }
