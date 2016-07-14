@@ -16,11 +16,15 @@ export default class Header extends React.Component {
 			<h1>My Live Blog</h1>
 			{ this.state.user ? (
 				<div>
-					<button onClick={() => this.setState({ user: false })}>Log out</button>
+					<p className="actions">
+						<button className="primary" onClick={() => this.setState({ user: false })}>Log out</button>
+					</p>
 					<PostBox />
 				</div>
 			) : (
-				<button onClick={() => this.setState({ user: true })}>Log in</button>
+				<p className="actions">
+					<button className="primary" onClick={() => this.setState({ user: true })}>Log in</button>
+				</p>
 			)}
 
 			<p className="post-filter">
