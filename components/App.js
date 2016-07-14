@@ -1,9 +1,26 @@
 import React from 'react'
+import PostsList from './PostsList'
 
 export default class App extends React.Component {
+
+	constructor() {
+		super()
+		this.state = {
+			posts: [],
+		}
+
+		this.loadPosts()
+	}
+
+	loadPosts() {
+		fetch( 'https://demo.wp-api.org/wp-json/wp/v2/posts', { credentials: "include" } )
+			.then( response => response.json() )
+			.then( posts => this.setState( { posts: posts } ) )
+	}
+
 	render() {
 		return <div>
-			Hello world!
+			<PostsList posts={this.state.posts} />
 		</div>
 	}
 }
