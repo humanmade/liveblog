@@ -5,16 +5,13 @@ export default class Header extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			user: null
+			user: null,
+			sort: 'date',
+			filter: 'all',
 		}
 	}
 
 	render() {
-		let query = {
-			sort: 'date',
-			filter: 'all'
-		}
-
 		return <header>
 			<h1>My Live Blog</h1>
 			{ this.state.user ? (
@@ -27,16 +24,28 @@ export default class Header extends React.Component {
 				<span className="group">
 					Sort:
 					{' '}
-					<a className={ query.sort == 'date' ? 'active' : ''}>Date</a>
+					<a
+						className={ this.state.sort == 'date' ? 'active' : ''}
+						onClick={() => this.setState({ sort: 'date' })}
+					>Date</a>
 					{' | '}
-					<a className={ query.sort == 'likes' ? 'active' : ''}>Likes</a>
+					<a
+						className={ this.state.sort == 'likes' ? 'active' : ''}
+						onClick={() => this.setState({ sort: 'likes' })}
+					>Likes</a>
 				</span>
 				<span className="group">
 					Filter:
 					{' '}
-					<a className={ query.filter == 'all' ? 'active' : ''}>All</a>
+					<a
+						className={ this.state.filter == 'all' ? 'active' : ''}
+						onClick={() => this.setState({ filter: 'all' })}
+					>All</a>
 					{' | '}
-					<a className={ query.filter == 'draft' ? 'active' : ''}>Drafts</a>
+					<a
+						className={ this.state.filter == 'draft' ? 'active' : ''}
+						onClick={() => this.setState({ filter: 'draft' })}
+					>Drafts</a>
 				</span>
 			</p>
 		</header>
