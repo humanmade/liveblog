@@ -1,5 +1,7 @@
 body {
 	background: #f4efe6;
+	font-size: 14px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 .app {
 	max-width: 600px;
@@ -49,7 +51,7 @@ body {
 	cursor: pointer;
 }
 button.primary, button.secondary {
-	font-size: 0.8em;
+	font-size: inherit;
 	line-height: 2em;
 	border: 1px solid #d94e3a;
 	border-radius: 4px;
