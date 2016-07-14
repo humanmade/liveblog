@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from './Header'
 import PostsList from './PostsList'
 
 export default class App extends React.Component {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
 
 	render() {
 		return <div className="app">
+			<Header />
 			<PostsList posts={this.state.posts} />
 		</div>
 	}

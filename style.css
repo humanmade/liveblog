@@ -5,6 +5,12 @@ body {
 	max-width: 960px;
 	margin: 0 auto;
 }
+.post-filter .group {
+	margin-right: 1em;
+}
+.post-filter a:not(.active) {
+	text-decoration: underline;
+}
 .post {
 	background: #fff;
 	padding: 1em;
