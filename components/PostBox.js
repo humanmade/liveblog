@@ -31,7 +31,7 @@ export default class PostBox extends React.Component {
 				<p>Saving...</p>
 			:
 				<p className="actions">
-					<button className="secondary" onClick={() => this.onCreatePost('draft')}>Submit for Review</button>
+					<button className="secondary" onClick={() => this.onCreatePost('pending')}>Submit for Review</button>
 					<button className="primary" onClick={() => this.onCreatePost('publish')}>Publish</button>
 				</p>
 			}

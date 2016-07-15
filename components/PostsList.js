@@ -48,9 +48,9 @@ export default class PostsList extends React.Component {
 					>All</a>
 					{' | '}
 					<a
-						className={ this.state.filter == 'draft' ? 'active' : ''}
-						onClick={() => this.setState({ filter: 'draft' })}
-					>Drafts</a>
+						className={ this.state.filter == 'pending' ? 'active' : ''}
+						onClick={() => this.setState({ filter: 'pending' })}
+					>Pending</a>
 				</span>
 			</p>
 			{posts.map( post =>
