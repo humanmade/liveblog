@@ -25,6 +25,12 @@ export default class App extends React.Component {
 		}
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.user !== this.state.user) {
+			this.loadPosts()
+		}
+	}
+
 	onConnect(url) {
 		this.setState({ url: url })
 		window.localStorage.setItem( 'url', url )
@@ -44,8 +50,7 @@ export default class App extends React.Component {
 		apiHandler.get('/')
 			.then(site => this.setState({ site: site }))
 
-		apiHandler.get('/wp/v2/posts', {_embed: true})
-			.then(posts => this.setState({ posts: posts }))
+		this.loadPosts()
 	}
 
 	onLogin() {
@@ -59,9 +64,32 @@ export default class App extends React.Component {
 				.then(data => data.body)
 				.then(user => this.setState({ user }))
 
-			apiHandler.get('/wp/v2/posts', {_embed: true, context: "edit", status: "any"})
-				.then(posts => this.setState({ posts }))
+			this.loadPosts()
 		})
+	}
+
+	onCreatePost(data) {
+		window.apiHandler.post('/wp/v2/posts', data)
+			.then(() => this.loadPosts())
+	}
+
+	loadPosts() {
+		let args = {_embed: true}
+		if (this.state.user) {
+			args.context = "edit"
+			args.status = "any"
+		}
+
+		apiHandler.get('/wp/v2/posts', args)
+			.then(posts => {
+				posts = posts.map(post => {
+					if (!post.status) {
+						post.status = "publish"
+					}
+					return post
+				})
+				this.setState({ posts })
+			})
 	}
 
 	render() {
@@ -70,7 +98,13 @@ export default class App extends React.Component {
 		}
 
 		return <div className="app">
-			<Header site={this.state.site} user={this.state.user} onLogin={() => this.onLogin()} />
+			<Header
+				site={this.state.site}
+				user={this.state.user}
+				onLogin={() => this.onLogin()}
+				onSubmit={text => this.onCreatePost({ status: "draft", content: text })}
+				onPublish={text => this.onCreatePost({ status: "publish", content: text })}
+			/>
 
 			{this.state.posts ? (
 				<PostsList posts={this.state.posts} />
