@@ -39,19 +39,26 @@ export default class PostsList extends React.Component {
 						onClick={() => this.setState({ sort: 'likes' })}
 					>Likes</a>
 				</span>
-				<span className="group">
-					Filter:
-					{' '}
-					<a
-						className={ this.state.filter == 'all' ? 'active' : ''}
-						onClick={() => this.setState({ filter: 'all' })}
-					>All</a>
-					{' | '}
-					<a
-						className={ this.state.filter == 'pending' ? 'active' : ''}
-						onClick={() => this.setState({ filter: 'pending' })}
-					>Pending</a>
-				</span>
+				{this.props.showFilter ?
+					<span className="group">
+						Filter:
+						{' '}
+						<a
+							className={ this.state.filter == 'all' ? 'active' : ''}
+							onClick={() => this.setState({ filter: 'all' })}
+						>All</a>
+						{' | '}
+						<a
+							className={ this.state.filter == 'pending' ? 'active' : ''}
+							onClick={() => this.setState({ filter: 'pending' })}
+						>Pending</a>
+					</span>
+				: null}
+				{this.props.isLoadingPosts ?
+					<span className="loading-status">
+						Loading Posts...
+					</span>
+				: null }
 			</p>
 			{posts.map( post =>
 				<Post

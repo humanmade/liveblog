@@ -12,6 +12,7 @@ export default class App extends React.Component {
 		super()
 		this.state = {
 			posts: [],
+			isLoadingPosts: false,
 			url: '',
 			site: null,
 			user: null,
@@ -45,6 +46,7 @@ export default class App extends React.Component {
 			.then(site => this.setState({ site: site }))
 
 		this.loadPosts()
+		setInterval( this.loadPosts.bind(this), 5000 )
 	}
 
 	onLogin() {
@@ -104,7 +106,9 @@ export default class App extends React.Component {
 	}
 
 	loadPosts() {
-		let args = {_embed: true}
+
+		this.setState({ isLoadingPosts: true })
+		let args = {_embed: true, per_page: 100}
 		if (this.state.user) {
 			args.context = "edit"
 			args.status = "any"
@@ -121,7 +125,7 @@ export default class App extends React.Component {
 					}
 					return post
 				})
-				this.setState({ posts })
+				this.setState({ posts, isLoadingPosts: false })
 			})
 	}
 
@@ -142,10 +146,12 @@ export default class App extends React.Component {
 
 			{this.state.posts ? (
 				<PostsList
+					isLoadingPosts={this.state.isLoadingPosts}
 					posts={this.state.posts}
 					onLikePost={this.onLikePost.bind(this)}
 					onApprovePost={this.onApprovePost.bind(this)}
 					onRejectPost={this.onRejectPost.bind(this)}
+					showFilter={this.props.user}
 				/>
 			) : (
 				<div><p>Loading...</p></div>
