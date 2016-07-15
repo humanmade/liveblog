@@ -14,7 +14,7 @@ export default class Header extends React.Component {
 	render() {
 		return <header>
 			<h1>
-				{this.props.site ? this.props.site.name : null }
+				{this.props.site ? this.props.site.name : null}
 			</h1>
 			{ this.state.user ? (
 				<div>
