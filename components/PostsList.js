@@ -19,7 +19,9 @@ export default class PostsList extends React.Component {
 		}
 
 		if (this.state.sort === 'likes') {
-			posts = posts.sort( ( a, b ) => a.likes > b.likes )
+			posts = posts.sort( ( a, b ) => a.liveblog_likes > b.liveblog_likes ? -1 : 1 )
+		} else {
+			posts = posts.sort( ( a, b ) => a.date > b.date ? -1 : 1 )
 		}
 
 		return <div>
