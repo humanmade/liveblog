@@ -15,18 +15,16 @@ export default class SiteSelect extends React.Component {
 		})
 	}
 
-	onSubmit() {
-		console.log(this.state.url)
-	}
-
 	render() {
-		return <div className="site-select">
-			<input value={this.state.url} onChange={e => this.onChange(e)} />
+		return <form
+				className="site-select"
+				onSubmit={() => this.props.onConnect(this.state.url)}
+				>
+			<input type="url" value={this.state.url} onChange={e => this.onChange(e)} />
 			<button
 				className="primary"
-				onClick={() => this.props.onConnect(this.state.url)}
 			>Connect</button>
-		</div>
+		</form>
 	}
 }
 SiteSelect.propTypes = {
