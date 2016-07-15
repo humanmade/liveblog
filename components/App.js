@@ -59,7 +59,7 @@ export default class App extends React.Component {
 				.then(data => data.body)
 				.then(user => this.setState({ user }))
 
-			apiHandler.get('/wp/v2/posts', {_embed: true, status: 'any'})
+			apiHandler.get('/wp/v2/posts', {_embed: true, context: "edit", status: "any"})
 				.then(posts => this.setState({ posts }))
 		})
 	}
