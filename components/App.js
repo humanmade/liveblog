@@ -61,9 +61,19 @@ export default class App extends React.Component {
 		})
 	}
 
+	onLogout() {
+		this.setState({ user:null })
+		window.apiHandler.removeCredentials()
+	}
+
 	onCreatePost(data) {
 		window.apiHandler.post('/wp/v2/posts', data)
 			.then(() => this.loadPosts())
+	}
+
+	onReset() {
+		this.setState({ posts: [], url: '', site: null, user: null })
+		window.localStorage.removeItem('url')
 	}
 
 	onLikePost(post) {
@@ -105,6 +115,9 @@ export default class App extends React.Component {
 			args.status = "any"
 		}
 
+		// Bust the cache.
+		args._ = Date.now()
+
 		apiHandler.get('/wp/v2/posts', args)
 			.then(posts => {
 				posts = posts.map(post => {
@@ -126,8 +139,9 @@ export default class App extends React.Component {
 			<Header
 				site={this.state.site}
 				user={this.state.user}
+				onSwitchSite={() => this.onReset()}
 				onLogin={() => this.onLogin()}
-				onLogout={() => this.setState({user: null})}
+				onLogout={() => this.onLogout()}
 				onSubmit={text => this.onCreatePost({ status: "draft", content: text })}
 				onPublish={text => this.onCreatePost({ status: "publish", content: text })}
 			/>
