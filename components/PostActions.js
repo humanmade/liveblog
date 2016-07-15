@@ -20,7 +20,7 @@ export default class PostActions extends React.Component {
 			return <div className="actions">
 				{typeof post.liveblog_likes === 'number' ?
 					<div className="likes-container">
-						<span className="likes-counter">{post.liveblog_likes}</span>
+						<span className="likes-counter">{post.liveblog_likes ? post.liveblog_likes : ''}</span>
 						<button
 							className="action-like"
 							onClick={this.onLikePost.bind(this)}
