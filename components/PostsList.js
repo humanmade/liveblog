@@ -12,8 +12,7 @@ export default class PostsList extends React.Component {
 	}
 
 	render() {
-
-		var posts = this.props.posts
+		let posts = this.props.posts
 
 		if (this.state.filter !== 'all') {
 			posts = posts.filter( post => post.status === this.state.filter )
