@@ -115,6 +115,9 @@ export default class App extends React.Component {
 			args.status = "any"
 		}
 
+		// Bust the cache.
+		args._ = Date.now()
+
 		apiHandler.get('/wp/v2/posts', args)
 			.then(posts => {
 				posts = posts.map(post => {
