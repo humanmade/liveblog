@@ -73,6 +73,38 @@ export default class App extends React.Component {
 			.then(() => this.loadPosts())
 	}
 
+	onLikePost(post) {
+		this.setState({liked: true})
+		window.apiHandler.post( '/liveblog-likes/v1/posts/' + post.id + '/like' )
+			.then( response => {
+				this.setState({
+					posts: this.state.posts.map( p => {
+						p.id === post.id ? p.liveblog_likes = response.count : null
+						return p
+					} )
+				})
+			})
+	}
+
+	onApprovePost(post) {
+		window.apiHandler.post( '/wp/v2/posts/' + post.id, { status : 'publish' } )
+			.then( post => {
+				this.setState({
+					posts: this.state.posts.map( p => {
+						if ( p.id === post.id ) {
+							p.status = post.status
+						}
+						return p
+					} )
+				})
+			})
+	}
+
+	onRejectPost(post) {
+		window.apiHandler.del( '/wp/v2/posts/' + post.id )
+			.then( () => this.setState({posts:this.state.posts.filter( p => p.id !== post.id)}))
+	}
+
 	loadPosts() {
 		let args = {_embed: true}
 		if (this.state.user) {
@@ -107,7 +139,12 @@ export default class App extends React.Component {
 			/>
 
 			{this.state.posts ? (
-				<PostsList posts={this.state.posts} />
+				<PostsList
+					posts={this.state.posts}
+					onLikePost={this.onLikePost.bind(this)}
+					onApprovePost={this.onApprovePost.bind(this)}
+					onRejectPost={this.onRejectPost.bind(this)}
+				/>
 			) : (
 				<div><p>Loading...</p></div>
 			)}

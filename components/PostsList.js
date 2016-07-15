@@ -52,7 +52,13 @@ export default class PostsList extends React.Component {
 				</span>
 			</p>
 			{posts.map( post =>
-				<Post key={post.id} post={post} />
+				<Post
+					key={post.id}
+					post={post}
+					onLikePost={this.props.onLikePost}
+					onApprovePost={this.props.onApprovePost}
+					onRejectPost={this.props.onRejectPost}
+				/>
 			)}
 		</div>
 	}

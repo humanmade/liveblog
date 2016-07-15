@@ -17,7 +17,12 @@ export default class Post extends React.Component {
 
 			<div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />
 
-			<PostActions post={post} />
+			<PostActions
+				post={post}
+				onLikePost={this.props.onLikePost}
+				onApprovePost={this.props.onApprovePost}
+				onRejectPost={this.props.onRejectPost}
+			/>
 		</div>
 	}
 }
