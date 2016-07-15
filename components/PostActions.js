@@ -10,12 +10,8 @@ export default class PostActions extends React.Component {
 
 	render() {
 		let { post } = this.props
-		let published = post.status === "published"
 
-		// fake it 'til we make it
-		published = post.id % 2
-
-		if (published) {
+		if (post.status === "publish") {
 			return <div className="actions">
 				<button
 					className="action-like"
