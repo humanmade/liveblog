@@ -2,21 +2,12 @@ import React from 'react'
 import PostBox from './PostBox'
 
 export default class Header extends React.Component {
-	constructor() {
-		super()
-		this.state = {
-			user: null,
-			sort: 'date',
-			filter: 'all',
-		}
-	}
-
 	render() {
 		return <header>
 			<h1>
 				{this.props.site ? this.props.site.name : null}
 			</h1>
-			{ this.state.user ? (
+			{ this.props.user ? (
 				<div>
 					<p className="actions">
 						<button className="primary" onClick={() => this.setState({ user: false })}>Log out</button>
