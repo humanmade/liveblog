@@ -9,7 +9,8 @@ export default class App extends React.Component {
 		super()
 		this.state = {
 			posts: [],
-			url: ''
+			url: '',
+			site: null,
 		}
 	}
 
@@ -19,6 +20,9 @@ export default class App extends React.Component {
 		this.api = new api({
 			url: url
 		})
+
+		this.api.get( '/' )
+			.then( site => this.setState( { site: site } ) )
 
 		this.api.get( '/wp/v2/posts?_embed' )
 			.then( posts => this.setState( { posts: posts } ) )
@@ -30,7 +34,7 @@ export default class App extends React.Component {
 		}
 
 		return <div className="app">
-			<Header />
+			<Header site={this.state.site} />
 
 			{this.state.posts ? (
 				<PostsList posts={this.state.posts} />
