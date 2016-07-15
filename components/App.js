@@ -61,6 +61,11 @@ export default class App extends React.Component {
 		})
 	}
 
+	onLogout() {
+		this.setState({ user:null })
+		window.apiHandler.removeCredentials()
+	}
+
 	onCreatePost(data) {
 		window.apiHandler.post('/wp/v2/posts', data)
 			.then(() => this.loadPosts())
@@ -127,7 +132,7 @@ export default class App extends React.Component {
 				site={this.state.site}
 				user={this.state.user}
 				onLogin={() => this.onLogin()}
-				onLogout={() => this.setState({user: null})}
+				onLogout={() => this.onLogout()}
 				onSubmit={text => this.onCreatePost({ status: "draft", content: text })}
 				onPublish={text => this.onCreatePost({ status: "publish", content: text })}
 			/>
