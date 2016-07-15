@@ -70,7 +70,7 @@ export default class App extends React.Component {
 		}
 
 		return <div className="app">
-			<Header site={this.state.site} />
+			<Header site={this.state.site} user={this.state.user} onLogin={() => this.onLogin()} />
 
 			{this.state.posts ? (
 				<PostsList posts={this.state.posts} />

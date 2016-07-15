@@ -25,9 +25,13 @@ export default class Header extends React.Component {
 				</div>
 			) : (
 				<p className="actions">
-					<button className="primary" onClick={() => this.setState({ user: true })}>Log in</button>
+					<button className="primary" onClick={() => this.props.onLogin()}>Log in</button>
 				</p>
 			)}
 		</header>
 	}
+}
+
+Header.propTypes = {
+	onLogin: React.PropTypes.func.isRequired,
 }
