@@ -13,7 +13,7 @@ export default class Header extends React.Component {
 						<button className="secondary" onClick={() => this.props.onSwitchSite()}>Switch site</button>
 						<button className="primary" onClick={() => this.props.onLogout()}>Log out</button>
 					</p>
-					<PostBox onSubmit={this.props.onSubmit} onPublish={this.props.onPublish} />
+					<PostBox onDidPublish={this.props.onDidPublish} />
 				</div>
 			) : (
 				<p className="actions">
@@ -29,6 +29,5 @@ Header.propTypes = {
 	onSwitchSite: React.PropTypes.func.isRequired,
 	onLogin: React.PropTypes.func.isRequired,
 	onLogout: React.PropTypes.func.isRequired,
-	onSubmit: React.PropTypes.func.isRequired,
-	onPublish: React.PropTypes.func.isRequired,
+	onDidPublish: React.PropTypes.func.isRequired,
 }

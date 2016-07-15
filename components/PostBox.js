@@ -6,21 +6,39 @@ export default class PostBox extends React.Component {
 
 		this.state = {
 			text: '',
+			isSaving: false,
 		}
+	}
+
+	onCreatePost(status) {
+		this.setState({isSaving:true})
+		window.apiHandler.post('/wp/v2/posts', { content: this.state.text, status: status })
+			.then(data => {
+				this.props.onDidPublish(data)
+				this.setState({ isSaving: false, text: '' })
+			})
 	}
 
 	render() {
 		return <div className="post-box">
-			<textarea rows={4} onChange={e => this.setState({ text: e.target.value })} />
-			<p className="actions">
-				<button className="secondary" onClick={() => this.props.onSubmit(this.state.text)}>Submit for Review</button>
-				<button className="primary" onClick={() => this.props.onPublish(this.state.text)}>Publish</button>
-			</p>
+			<textarea
+				value={this.state.text}
+				rows={4}
+				onChange={e => this.setState({ text: e.target.value })}
+				disabled={this.state.isSaving}
+			/>
+			{this.state.isSaving ?
+				<p>Saving...</p>
+			:
+				<p className="actions">
+					<button className="secondary" onClick={() => this.onCreatePost('draft')}>Submit for Review</button>
+					<button className="primary" onClick={() => this.onCreatePost('publish')}>Publish</button>
+				</p>
+			}
 		</div>
 	}
 }
 
 PostBox.propTypes = {
-	onSubmit: React.PropTypes.func.isRequired,
-	onPublish: React.PropTypes.func.isRequired,
+	onDidPublish: React.PropTypes.func.isRequired,
 }
