@@ -25,12 +25,6 @@ export default class App extends React.Component {
 		}
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevState.user !== this.state.user) {
-			this.loadPosts()
-		}
-	}
-
 	onConnect(url) {
 		this.setState({ url: url })
 		window.localStorage.setItem( 'url', url )
@@ -63,8 +57,7 @@ export default class App extends React.Component {
 			apiHandler.get('/wp/v2/users/me', {_envelope: true})
 				.then(data => data.body)
 				.then(user => this.setState({ user }))
-
-			this.loadPosts()
+				.then(() => this.loadPosts())
 		})
 	}
 
@@ -134,6 +127,7 @@ export default class App extends React.Component {
 				site={this.state.site}
 				user={this.state.user}
 				onLogin={() => this.onLogin()}
+				onLogout={() => this.setState({user: null})}
 				onSubmit={text => this.onCreatePost({ status: "draft", content: text })}
 				onPublish={text => this.onCreatePost({ status: "publish", content: text })}
 			/>

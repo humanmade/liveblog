@@ -10,7 +10,7 @@ export default class Header extends React.Component {
 			{ this.props.user ? (
 				<div>
 					<p className="actions">
-						<button className="primary" onClick={() => this.setState({ user: false })}>Log out</button>
+						<button className="primary" onClick={() => this.props.onLogout()}>Log out</button>
 					</p>
 					<PostBox onSubmit={this.props.onSubmit} onPublish={this.props.onPublish} />
 				</div>
@@ -25,6 +25,7 @@ export default class Header extends React.Component {
 
 Header.propTypes = {
 	onLogin: React.PropTypes.func.isRequired,
+	onLogout: React.PropTypes.func.isRequired,
 	onSubmit: React.PropTypes.func.isRequired,
 	onPublish: React.PropTypes.func.isRequired,
 }
