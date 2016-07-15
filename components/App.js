@@ -71,6 +71,11 @@ export default class App extends React.Component {
 			.then(() => this.loadPosts())
 	}
 
+	onReset() {
+		this.setState({ posts: [], url: '', site: null, user: null })
+		window.localStorage.removeItem('url')
+	}
+
 	onLikePost(post) {
 		this.setState({liked: true})
 		window.apiHandler.post( '/liveblog-likes/v1/posts/' + post.id + '/like' )
@@ -131,6 +136,7 @@ export default class App extends React.Component {
 			<Header
 				site={this.state.site}
 				user={this.state.user}
+				onSwitchSite={() => this.onReset()}
 				onLogin={() => this.onLogin()}
 				onLogout={() => this.onLogout()}
 				onSubmit={text => this.onCreatePost({ status: "draft", content: text })}
