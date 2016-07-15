@@ -41,14 +41,26 @@ export default class App extends React.Component {
 			callbackURL: window.location,
 		})
 
-		apiHandler.restoreCredentials().authorize().then( () => {
+		apiHandler.get('/')
+			.then(site => this.setState({ site: site }))
+
+		apiHandler.get('/wp/v2/posts', {_embed: true})
+			.then(posts => this.setState({ posts: posts }))
+	}
+
+	onLogin() {
+		window.apiHandler.restoreCredentials().authorize().then( () => {
 			apiHandler.saveCredentials()
 
 			apiHandler.get( '/' )
-				.then(site => this.setState({ site: site }))
+				.then(site => this.setState({ site }))
 
-			apiHandler.get( '/wp/v2/posts', { _embed: true } )
-				.then(posts => this.setState({ posts: posts }))
+			apiHandler.get('/wp/v2/users/me', {_envelope: true})
+				.then(data => data.body)
+				.then(user => this.setState({ user }))
+
+			apiHandler.get('/wp/v2/posts', {_embed: true, status: 'any'})
+				.then(posts => this.setState({ posts }))
 		})
 	}
 
