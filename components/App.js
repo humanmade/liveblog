@@ -16,6 +16,7 @@ export default class App extends React.Component {
 			url: '',
 			site: null,
 			user: null,
+			category: null,
 		}
 	}
 
@@ -44,9 +45,6 @@ export default class App extends React.Component {
 
 		apiHandler.get('/')
 			.then(site => this.setState({ site: site }))
-
-		this.loadPosts()
-		setInterval( this.loadPosts.bind(this), 5000 )
 	}
 
 	onLogin() {
@@ -59,7 +57,6 @@ export default class App extends React.Component {
 			apiHandler.get('/wp/v2/users/me', {_envelope: true})
 				.then(data => data.body)
 				.then(user => this.setState({ user }))
-				.then(() => this.loadPosts())
 		})
 	}
 
@@ -105,6 +102,13 @@ export default class App extends React.Component {
 			.then( () => this.setState({posts:this.state.posts.filter( p => p.id !== post.id)}))
 	}
 
+	onSelectCategory(category) {
+		this.setState({ category })
+
+		setTimeout( () => this.loadPosts() )
+		setInterval( this.loadPosts.bind(this), 5000 )
+	}
+
 	loadPosts() {
 
 		this.setState({ isLoadingPosts: true })
@@ -134,6 +138,8 @@ export default class App extends React.Component {
 			return <Welcome onConnect={url => this.onConnect(url)} />
 		}
 
+
+
 		return <div className="app">
 			<Header
 				site={this.state.site}
@@ -141,21 +147,32 @@ export default class App extends React.Component {
 				onSwitchSite={() => this.onReset()}
 				onLogin={() => this.onLogin()}
 				onLogout={() => this.onLogout()}
-				onDidPublish={() => this.loadPosts()}
 			/>
 
-			{this.state.posts ? (
-				<PostsList
-					isLoadingPosts={this.state.isLoadingPosts}
-					posts={this.state.posts}
-					onLikePost={this.onLikePost.bind(this)}
-					onApprovePost={this.onApprovePost.bind(this)}
-					onRejectPost={this.onRejectPost.bind(this)}
-					showFilter={this.props.user}
-				/>
-			) : (
-				<div><p>Loading...</p></div>
-			)}
+			{!this.state.category ?
+				<SelectCategory onSelect={category => this.onSelectCategory(category)} />
+			:
+				this.state.posts ? (
+					<div>
+						{this.state.user ?
+							<PostBox
+								onDidPublish={() => this.loadPosts()}
+								category={this.state.category}
+							/>
+						: null}
+						<PostsList
+							isLoadingPosts={this.state.isLoadingPosts}
+							posts={this.state.posts}
+							onLikePost={this.onLikePost.bind(this)}
+							onApprovePost={this.onApprovePost.bind(this)}
+							onRejectPost={this.onRejectPost.bind(this)}
+							showFilter={this.props.user}
+						/>
+					</div>
+				) : (
+					<div><p>Loading...</p></div>
+				)
+			}
 		</div>
 	}
 }

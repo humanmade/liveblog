@@ -12,7 +12,12 @@ export default class PostBox extends React.Component {
 
 	onCreatePost(status) {
 		this.setState({isSaving:true})
-		window.apiHandler.post('/wp/v2/posts', { content: this.state.text, status: status })
+		let post = {
+			content: this.state.text,
+			status: status,
+			categories: [ this.props.category.id ],
+		}
+		window.apiHandler.post('/wp/v2/posts', post)
 			.then(data => {
 				this.props.onDidPublish(data)
 				this.setState({ isSaving: false, text: '' })
@@ -41,4 +46,5 @@ export default class PostBox extends React.Component {
 
 PostBox.propTypes = {
 	onDidPublish: React.PropTypes.func.isRequired,
+	category: React.PropTypes.object.isRequired,
 }
