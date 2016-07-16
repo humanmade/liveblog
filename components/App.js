@@ -3,6 +3,8 @@ import api from 'wordpress-rest-api-oauth-1'
 import Header from './Header'
 import PostsList from './PostsList'
 import Welcome from './Welcome'
+import SelectCategory from './SelectCategory'
+import PostBox from './PostBox'
 
 const API_KEY = 'wMa5iV8tJII5'
 const API_SECRET = 'a8xu7QZVBRZStXaWz6ewcL9C2NmUOX8F1C0V99YUD2FkoaS5'
