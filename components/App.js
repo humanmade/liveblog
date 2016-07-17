@@ -32,7 +32,6 @@ export default class App extends React.Component {
 	onConnect(url) {
 		let apiHandler = window.apiHandler = new api({
 			url: url,
-			brokerURL: 'https://apps.wp-api.org/',
 			brokerCredentials: {
 				client: {
 					public: API_KEY,
