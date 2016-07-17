@@ -18,7 +18,7 @@ export default class SiteSelect extends React.Component {
 	render() {
 		return <form
 				className="site-select"
-				onSubmit={() => this.props.onConnect(this.state.url)}
+				onSubmit={e => {e.preventDefault(); this.props.onConnect(this.state.url)}}
 				>
 			<input type="url" value={this.state.url} onChange={e => this.onChange(e)} />
 			<button
