@@ -23,7 +23,7 @@ export default class SelectCategory extends React.Component {
 					return this.setState({ hasLiveblogsCategory: false, isLoadingCategories: false })
 				}
 
-				window.apiHandler.get( '/wp/v2/categories', { parent: categories[0].id, wad:'awd' } )
+				window.apiHandler.get( '/wp/v2/categories', { parent: categories[0].id } )
 					.then( categories => this.setState({ categories, isLoadingCategories:false }))
 			} )
 	}
