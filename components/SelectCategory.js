@@ -37,10 +37,13 @@ export default class SelectCategory extends React.Component {
 		if ( this.state.hasLiveblogsCategory === false ) {
 			return <p>This site has no category with the slug "liveblogs", if you are the site owner, first create a category on your site called "Liveblogs".</p>
 		}
-		return <ul>
-			{this.state.categories.map( category =>
-				<li key={category.id}><a href="#" onClick={() => this.props.onSelect(category)}>{category.name}</a></li>
-			)}
-		</ul>
+		return <div>
+			<h2>Select the Liveblog from the list below.</h2>
+			<ul>
+				{this.state.categories.map( category =>
+					<li key={category.id}><a href="#" onClick={() => this.props.onSelect(category)}>{category.name}</a></li>
+				)}
+			</ul>
+		</div>
 	}
 }
