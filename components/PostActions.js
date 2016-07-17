@@ -23,7 +23,7 @@ export default class PostActions extends React.Component {
 						<span className="likes-counter">{post.liveblog_likes ? post.liveblog_likes : ''}</span>
 						<button
 							className="action-like"
-							onClick={this.onLikePost.bind(this)}
+							onClick={() => this.onLikePost()}
 							disabled={this.state.liked}
 						>{ this.state.liked ? "♥" : "♡" }</button>
 					</div>
