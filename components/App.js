@@ -8,6 +8,7 @@ import PostBox from './PostBox'
 
 const API_KEY = 'wMa5iV8tJII5'
 const API_SECRET = 'a8xu7QZVBRZStXaWz6ewcL9C2NmUOX8F1C0V99YUD2FkoaS5'
+const CALLBACK_URL = 'http://localhost:3000'
 
 export default class App extends React.Component {
 	constructor() {
@@ -38,7 +39,7 @@ export default class App extends React.Component {
 					secret: API_SECRET,
 				},
 			},
-			callbackURL: window.location.href,
+			callbackURL: CALLBACK_URL,
 		})
 
 		apiHandler.get('/')
