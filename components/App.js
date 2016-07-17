@@ -42,7 +42,7 @@ export default class App extends React.Component {
 					secret: API_SECRET,
 				},
 			},
-			callbackURL: window.location,
+			callbackURL: window.location.href,
 		})
 
 		apiHandler.get('/')
