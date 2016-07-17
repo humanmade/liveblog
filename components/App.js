@@ -106,7 +106,7 @@ export default class App extends React.Component {
 		this.setState({ category })
 
 		setTimeout( () => this.loadPosts() )
-		setInterval( this.loadPosts.bind(this), 5000 )
+		//setInterval( this.loadPosts.bind(this), 5000 )
 	}
 
 	loadPosts() {
