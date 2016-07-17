@@ -73,7 +73,6 @@ export default class App extends React.Component {
 	}
 
 	onLikePost(post) {
-		this.setState({liked: true})
 		window.apiHandler.post( '/liveblog-likes/v1/posts/' + post.id + '/like' )
 			.then( response => {
 				this.setState({
