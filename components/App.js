@@ -30,9 +30,6 @@ export default class App extends React.Component {
 	}
 
 	onConnect(url) {
-		this.setState({ url: url })
-		window.localStorage.setItem( 'url', url )
-
 		let apiHandler = window.apiHandler = new api({
 			url: url,
 			brokerURL: 'https://apps.wp-api.org/',
@@ -46,7 +43,10 @@ export default class App extends React.Component {
 		})
 
 		apiHandler.get('/')
-			.then(site => this.setState({ site: site }))
+			.then(site => {
+				window.localStorage.setItem('url', url)
+				this.setState({ site, url })
+			})
 	}
 
 	onLogin() {
@@ -155,20 +155,25 @@ export default class App extends React.Component {
 			:
 				this.state.posts ? (
 					<div>
+						<h2>{this.state.category.name}</h2>
 						{this.state.user ?
 							<PostBox
 								onDidPublish={() => this.loadPosts()}
 								category={this.state.category}
 							/>
 						: null}
-						<PostsList
-							isLoadingPosts={this.state.isLoadingPosts}
-							posts={this.state.posts}
-							onLikePost={this.onLikePost.bind(this)}
-							onApprovePost={this.onApprovePost.bind(this)}
-							onRejectPost={this.onRejectPost.bind(this)}
-							showFilter={this.state.user}
-						/>
+						{!this.state.isLoadingPosts && !this.state.posts.length ?
+							<p>No posts have been published yet, stand by...</p>
+						:
+							<PostsList
+								isLoadingPosts={this.state.isLoadingPosts}
+								posts={this.state.posts}
+								onLikePost={this.onLikePost.bind(this)}
+								onApprovePost={this.onApprovePost.bind(this)}
+								onRejectPost={this.onRejectPost.bind(this)}
+								showFilter={this.state.user}
+							/>
+						}
 					</div>
 				) : (
 					<div><p>Loading...</p></div>
