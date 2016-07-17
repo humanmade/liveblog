@@ -17,7 +17,7 @@ export default class SelectCategory extends React.Component {
 
 	loadCategories() {
 		this.setState({ isLoadingCategories: true })
-		window.apiHandler.get( '/wp/v2/categories', { slug: 'liveblogs', wd:'awd' } )
+		window.apiHandler.get( '/wp/v2/categories', { slug: 'liveblogs' } )
 			.then( categories => {
 				if ( ! categories.length ) {
 					return this.setState({ hasLiveblogsCategory: false, isLoadingCategories: false })
