@@ -167,7 +167,7 @@ export default class App extends React.Component {
 							onLikePost={this.onLikePost.bind(this)}
 							onApprovePost={this.onApprovePost.bind(this)}
 							onRejectPost={this.onRejectPost.bind(this)}
-							showFilter={this.props.user}
+							showFilter={this.state.user}
 						/>
 					</div>
 				) : (
