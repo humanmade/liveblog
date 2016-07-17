@@ -112,7 +112,7 @@ export default class App extends React.Component {
 	loadPosts() {
 
 		this.setState({ isLoadingPosts: true })
-		let args = {_embed: true, per_page: 100}
+		let args = {_embed: true, per_page: 100, categories: [this.state.category.id] }
 		if (this.state.user) {
 			args.context = "edit"
 			args.status = "any"
