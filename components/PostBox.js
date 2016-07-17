@@ -16,6 +16,7 @@ export default class PostBox extends React.Component {
 			content: this.state.text,
 			status: status,
 			categories: [ this.props.category.id ],
+			format: 'status',
 		}
 		window.apiHandler.post('/wp/v2/posts', post)
 			.then(data => {
