@@ -47,24 +47,29 @@ export default class App extends React.Component {
 				window.localStorage.setItem('url', url)
 				this.setState({ site, url })
 			})
+
+		apiHandler.restoreCredentials()
+
+		if ( apiHandler.hasCredentials() ) {
+			this.onLoggedIn()
+		} else if ( apiHandler.hasRequestToken() ) {
+			this.onLogin()
+		}
 	}
 
 	onLogin() {
-		window.apiHandler.restoreCredentials().authorize().then( () => {
-			apiHandler.saveCredentials()
-
-			apiHandler.get( '/' )
-				.then(site => this.setState({ site }))
-
-			apiHandler.get('/wp/v2/users/me', {_envelope: true})
-				.then(data => data.body)
-				.then(user => this.setState({ user }))
-		})
+		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
 
 	onLogout() {
 		this.setState({ user:null })
 		window.apiHandler.removeCredentials()
+	}
+
+	onLoggedIn() {
+		window.apiHandler.get('/wp/v2/users/me', {_envelope: true})
+			.then(data => data.body)
+			.then(user => this.setState({ user }))
 	}
 
 	onReset() {
