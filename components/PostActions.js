@@ -29,7 +29,7 @@ export default class PostActions extends React.Component {
 					</div>
 				: null}
 			</div>
-		} else {
+		} else if ( this.props.user.capabilities.publish_posts ) {
 			return <div className="actions">
 				<button
 					className="secondary"
@@ -40,6 +40,8 @@ export default class PostActions extends React.Component {
 					onClick={()=>this.props.onApprovePost(this.props.post)}
 				>Publish</button>
 			</div>
+		} else {
+			return null
 		}
 	}
 }

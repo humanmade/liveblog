@@ -40,10 +40,15 @@ export default class PostBox extends React.Component {
 			{this.state.isSaving ?
 				<p>Saving...</p>
 			:
-				<p className="actions">
-					<button className="secondary" onClick={() => this.onCreatePost('pending')}>Submit for review</button>
-					<button className="primary" onClick={() => this.onCreatePost('publish')}>Publish</button>
-				</p>
+				this.props.user.capabilities.publish_posts ?
+					<p className="actions">
+						<button className="secondary" onClick={() => this.onCreatePost('pending')}>Submit for review</button>
+						<button className="primary" onClick={() => this.onCreatePost('publish')}>Publish</button>
+					</p>
+				:
+					<p className="actions">
+						<button className="primary" onClick={() => this.onCreatePost('pending')}>Submit for review</button>
+					</p>
 			}
 		</form>
 	}

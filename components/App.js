@@ -67,7 +67,7 @@ export default class App extends React.Component {
 	}
 
 	onLoggedIn() {
-		window.apiHandler.get('/wp/v2/users/me', {_envelope: true})
+		window.apiHandler.get('/wp/v2/users/me', {_envelope: true, context: 'edit'})
 			.then(data => data.body)
 			.then(user => this.setState({ user }))
 	}
@@ -159,7 +159,7 @@ export default class App extends React.Component {
 
 			{this.state.posts ?
 				<div className="posts">
-					{this.state.user ?
+					{this.state.user && this.state.user.capabilities.edit_posts ?
 						<PostBox
 							onDidPublish={() => this.loadPosts()}
 							category={this.state.category}
@@ -173,6 +173,7 @@ export default class App extends React.Component {
 						<PostsList
 							isLoadingPosts={this.state.isLoadingPosts}
 							posts={this.state.posts}
+							user={this.state.user}
 							onLikePost={this.onLikePost.bind(this)}
 							onApprovePost={this.onApprovePost.bind(this)}
 							onRejectPost={this.onRejectPost.bind(this)}
