@@ -62,8 +62,9 @@ body {
 }
 .posts {
 	max-width: 620px;
-	padding-top: 60px;
-	margin: 0 10px;
+	padding: 60px 10px 0;
+	width: 100%;
+	box-sizing: border-box;
 }
 .posts h2 {
 	font-size: 16px;
@@ -182,6 +183,7 @@ body {
 }
 .Post:last-child {
 	border-bottom: none;
+	padding-bottom: 0;
 }
 .Post .date {
 	position: absolute;
