@@ -263,8 +263,21 @@ body {
 .Post button.secondary {
 	margin-left: 0;
 }
+.Post button.action-like {
+	border: none;
+	font-size: 20px;
+	padding: 0;
+	margin-left: 5px;
+}
 .Post button:active {
 	border: 2px solid #C93600;
+}
+.Post button.action-like:active {
+	border: none;
+}
+.Post .likes-counter {
+	color: #ED5A24;
+	font-weight: bold;
 }
 /**
  * Welcome Component
