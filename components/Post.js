@@ -1,20 +1,19 @@
 import React from 'react'
-import TimeAgo from 'react-components/js/timeago.jsx'
 import PostActions from './PostActions'
 
 export default class Post extends React.Component {
 	render() {
 		let { post } = this.props
-		let date = new Date( post.date )
+		let date = (new Date( post.date )).toISOString().split('T')[1].slice(0, 5)
 
 		return <div className="Post">
-			<div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />
+			<div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
 
 			<div className="date">
 				{post.status === 'pending' ?
 					<span className="label">Pending</span>
 				:
-					<span>{date.getHours() + ':' + date.getMinutes()}</span>
+					<span>{date}</span>
 				}
 			</div>
 
