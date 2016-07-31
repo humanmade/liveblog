@@ -180,6 +180,9 @@ body {
 	position: relative;
 	padding-bottom: 30px;
 }
+.Post:last-child {
+	border-bottom: none;
+}
 .Post .date {
 	position: absolute;
 	top: 0;
