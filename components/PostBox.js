@@ -26,7 +26,11 @@ export default class PostBox extends React.Component {
 	}
 
 	render() {
-		return <div className="post-box">
+		return <form className="PostBox">
+			<div className="user-detail">
+				<img src={this.props.user.avatar_urls['96']} />
+				You
+			</div>
 			<textarea
 				value={this.state.text}
 				rows={4}
@@ -37,15 +41,16 @@ export default class PostBox extends React.Component {
 				<p>Saving...</p>
 			:
 				<p className="actions">
-					<button className="secondary" onClick={() => this.onCreatePost('pending')}>Submit for Review</button>
+					<button className="secondary" onClick={() => this.onCreatePost('pending')}>Submit for review</button>
 					<button className="primary" onClick={() => this.onCreatePost('publish')}>Publish</button>
 				</p>
 			}
-		</div>
+		</form>
 	}
 }
 
 PostBox.propTypes = {
 	onDidPublish: React.PropTypes.func.isRequired,
 	category: React.PropTypes.object.isRequired,
+	user: React.PropTypes.object.isRequired,
 }

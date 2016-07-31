@@ -1,87 +1,437 @@
-body {
-	background: #f4efe6;
-	font-size: 14px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-}
-.app {
-	max-width: 600px;
-	margin: 0 auto;
-}
-.post-box textarea {
-	width: 100%;
-	box-sizing: border-box;
-}
-.post-filter .group {
-	margin-right: 1em;
-}
-.post-filter a:not(.active) {
-	text-decoration: underline;
-	cursor: pointer;
-}
-.post {
-	background: #fff;
-	padding: 1em;
-	margin-bottom: 1em;
-}
-.post.draft {
-	background: rgba(255, 255, 255, 0.5);
-	border-left: 0.2em solid #7DC9DA;
-	padding-left: 0.8em;
-}
-.post > header {
-	padding-left: 60px;
-}
-.post > header .avatar {
-	float: left;
-	margin-left: -60px;
-	width: 48px;
-	height: 48px;
-	border-radius: 24px;
-}
-.post > header p {
-	margin-top: 0;
-	margin-bottom: 0.5em;
-}
-.actions {
-	text-align: right;
-}
-.actions > * {
-	margin-left: 0.5em;
-}
-.action-like {
-	font-size: 2em;
-	border: 0;
-	background: transparent;
-	color: #d94e3a;
-	cursor: pointer;
-}
-button.primary, button.secondary {
-	font-size: inherit;
-	line-height: 2em;
-	border: 1px solid #d94e3a;
-	border-radius: 4px;
-	cursor: pointer;
-}
-button.primary {
-	background: #d94e3a;
-	color: #fff;
-}
-button.secondary {
-	background: transparent;
-	color: #d94e3a;
-}
-.welcome {
-	max-width: 400px;
-	text-align: center;
-}
-.welcome .branding {
-	margin: 0 auto;
-	width: 300px;
-}
-.welcome .site-select {
+html {
+	min-height: 100%;
 	display: flex;
 }
-.welcome .site-select input {
+body {
+	background: white;
+	font-size: 14px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	display: flex;
+	margin: 0;
+	min-height: 100%;
+	width: 100%;
+}
+#app {
+	flex: 1;
+	display: flex;
+}
+.app {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	background: #F4EFE6;
+	align-items: center;
+}
+/**
+ * Header Component
+ */
+.Header {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 15px;
+	background: white;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.10);
+	align-items: center;
+}
+.Header img {
+	max-width: 50%;
+	max-height: 75px;
+}
+.Header .actions {
+	margin: 0;
+	align-items: stretch;
+	display: flex;
+}
+.Header button {
+	background: url('images/icon-sign-out.svg') no-repeat center 10px;
+	border: none;
+	font-size: 15px;
+	color: #525865;
+	padding: 40px 0 0;
+	margin-left: 10px;
+	outline: none;
+	flex: 1;
+}
+.Header button.switch-site {
+	background-image: url('images/icon-switch-site.svg');
+}
+.Header button:active {
+	color: #ED5A24;
+}
+.posts {
+	max-width: 620px;
+	padding-top: 60px;
+	margin: 0 10px;
+}
+.posts h2 {
+	font-size: 16px;
+	color: #BCAD93;
+	text-align: center;
+	border-bottom: 1px solid #DAD1C1;
+	font-weight: normal;
+	padding-bottom: 25px;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+}
+/**
+ * PostBox Component
+ */
+.PostBox {
+	position: relative;
+	margin: 0 0 50px 0;
+}
+.PostBox::before {
+	content: " ";
+	display: block;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	left: 60px;
+	transform: rotate(45deg);
+	background: white;
+	top: 57px;
+	z-index: 2;
+	border-left: 1px solid #DAD1C1;
+	border-top: 1px solid #DAD1C1;
+}
+.PostBox .user-detail {
+	display: flex;
+	line-height: 50px;
+	color: #525865;
+	font-size: 16px;
+}
+.PostBox .user-detail img {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	margin-right: 5px;
+}
+.PostBox textarea {
+	width: 100%;
+	box-sizing: border-box;
+	background: #FFFFFF;
+	padding: 16px;
+	border: 1px solid #DAD1C1;
+	border-radius: 2px;
+	font-size: 16px;
+	color: #525865;
+	margin-top: 15px;
+	position: relative;
+	margin-bottom: 10px;
+	outline: none;
+	resize: none;
+}
+.PostBox .actions {
+	text-align: right;
+}
+.PostBox button {
+	height: 40px;
+	line-height: 33px;
+	padding-left: 16px;
+	padding-right: 16px;
+	border: 2px solid #ED5A24;
+	border-radius: 20px;
+	color: #ED5A24;
+	font-size: 16px;
+	background: none;
+	margin-left: 10px;
+	outline: none;
+}
+.PostBox button:first-child {
+	margin-left: 0;
+}
+.PostBox button.primary {
+	background: #ED5A24;
+	color: white;
+	padding: 0 30px;
+}
+.PostBox button:active {
+	border: 2px solid #C93600;
+}
+
+/**
+ * PostsList Component
+ */
+.PostsList {
+	background: white;
+	padding: 30px;
+	box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.10);
+	margin-bottom: 30px;
+}
+.PostsList .post-filter {
+	margin: -15px 0 20px 0;
+	color: #888;
+	font-size: 12px;
+}
+@media (max-width: 760px) {
+	.PostsList {
+		margin-left: 80px;
+		padding: 30px 20px;
+	}
+}
+/**
+ * Post Component
+ */
+.Post {
+	border-bottom: 1px solid #DAD1C1;
+	font-size: 16px;
+	position: relative;
+	padding-bottom: 30px;
+}
+.Post .date {
+	position: absolute;
+	top: 0;
+	left: -100px;
+	width: 50px;
+	text-align: center;
+	height: 100%;
+}
+.Post .date span {
+	background: #F4EFE6;
+	z-index: 2;
+	position: relative;
+	padding-bottom: 10px
+}
+.Post .date::after {
+	content: " ";
+	display: block;
+	position: absolute;
+	width: 2px;
+	height: 100%;
+	top: 0;
+	left: 50%;
+	margin-left: -1px;
+	background: #DAD1C1;
+}
+.Post .date .label {
+	background: #4CB8A0;
+	border-radius: 15px;
+	height: 30px;
+	font-size: 14px;
+	color: white;
+	line-height: 30px;
+	padding: 0 8px;
+	display: inline-block;
+	margin-left: -8px;
+	position: relative;
+}
+.Post .date .label::after {
+	content: " ";
+	position: absolute;
+	height: 15px;
+	width: 100%;
+	background: #F4EFE6;
+	bottom: -15px;
+	left: 0;
+}
+.Post .user-detail {
+	display: flex;
+	margin: 30px 0 0;
+	color: #525865;
+	font-size: 16px;
+	align-items: center;
+}
+.Post .user-detail img {
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	margin-right: 10px;
+}
+.Post .actions {
+	text-align: right;
+}
+.Post button {
+	height: 40px;
+	line-height: 33px;
+	padding-left: 16px;
+	padding-right: 16px;
+	border: 2px solid #ED5A24;
+	border-radius: 20px;
+	color: #ED5A24;
+	font-size: 16px;
+	background: none;
+	margin-left: 15px;
+	outline: none;
+}
+.Post button.primary {
+	background: #ED5A24;
+	color: white;
+	padding: 0 30px;
+}
+.Post button.secondary {
+	margin-left: 0;
+}
+.Post button:active {
+	border: 2px solid #C93600;
+}
+/**
+ * Welcome Component
+ */
+.Welcome {
+	text-align: center;
+	background: #525865;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+}
+.Welcome .branding {
+	background: white;
+	padding: 70px 0 30px;
+	width: 100%;
+	position: relative;
+	margin-bottom: 40px;
+}
+.Welcome .branding::after,
+.Welcome .branding::before{
+	content: " ";
+	display: block;
+	background: white;
+	position: absolute;
+	bottom: -50px;
+	width: 100%;
+	height: 60px;
+}
+.Welcome .branding::after {
+	left: -50%;
+	transform: rotate(3deg);
+	transform-origin: bottom right;
+}
+.Welcome .branding::before {
+	right: -50%;
+	transform: rotate(-3deg);
+	transform-origin: bottom left;
+}
+.Welcome .branding img {
+	max-width: 80%;
+	margin: 0 10%;
+}
+.Welcome p {
+	font-size: 20px;
+	margin: 50px 0;
+}
+.Welcome form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 560px;
+	width: 90%;
+}
+.Welcome input {
+	background: #FFFFFF;
+	border: 2px solid #E6E6E6;
+	border-radius: 2px;
+	font-size: 16px;
+	color: #9B9B9B;
+	max-width: 560px;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 13px;
+}
+.Welcome button {
+	background-image: linear-gradient(-187deg, #F7934A 0%, #ED5A24 100%);
+	border-radius: 100px;
+	font-size: 18px;
+	color: #FFFFFF;
+	border: none;
+	width: 200px;
+	text-align: center;
+	height: 55px;
+	line-height: 50px;
+	padding: 0;
+	margin: 30px 0;
+	outline: none;
+}
+.Welcome button:active {
+	border: 2px solid white;
+}
+/**
+ * SelectCategory Component
+ */
+.SelectCategory {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	background: #525865;
+	flex: 1;
+	color: white;
+}
+.SelectCategory .branding {
+	background: white;
+	padding: 70px 0 30px;
+	width: 100%;
+	position: relative;
+	margin-bottom: 40px;
+}
+.SelectCategory p {
+	font-size: 20px;
+	margin: 50px 0;
+}
+.SelectCategory input {
 	flex-grow: 1;
-	margin-right: 0.5em;
+	padding: 10px;
+	color: #9B9B9B;
+	font-size: 20px;
+	border-radius: 2px;
+	border: 2px solid #E6E6E6;
+	outline: none;
+	width: 100%;
+}
+.SelectCategory button {
+	width: 200px;
+	height: 55px;
+	line-height: 45px;
+	text-align: center;
+	color: white;
+	background-image: linear-gradient(-187deg, #F7934A 0%, #ED5A24 100%);
+	border-radius: 100px;
+	border: none;
+	font-size: 18px;
+	margin: 50px 0;
+	outline: none;
+}
+.SelectCategory button:active {
+	border: 2px solid white;
+}
+
+.SelectCategory .branding {
+	padding: 25px;
+	margin-bottom: 0;
+}
+
+.SelectCategory .branding img {
+	max-width: 80%;
+	margin: 0 10%;
+}
+
+.SelectCategory ul {
+	width: 80%;
+	max-width: 600px;
+	background: white;
+	border-radius: 2px;
+	list-style: none;
+	text-align: left;
+	padding-left: 0;
+}
+
+.SelectCategory li a {
+	line-height: 60px;
+	padding-left: 70px;
+	font-size: 20px;
+	color: black;
+	text-decoration: none;
+	border-bottom: 1px solid #E6E6E6;
+	display: block;
+}
+.SelectCategory li:last-child a {
+	border-bottom: none;
+}
+.SelectCategory li a:hover {
+	background: #ED5A24;
+	border-bottom: 1px solid #ED5A24;
+	color: white;
 }

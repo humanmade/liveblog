@@ -144,7 +144,9 @@ export default class App extends React.Component {
 			return <Welcome onConnect={url => this.onConnect(url)} />
 		}
 
-
+		if (!this.state.category) {
+			return <SelectCategory onSelect={category => this.onSelectCategory(category)} />
+		}
 
 		return <div className="app">
 			<Header
@@ -155,34 +157,31 @@ export default class App extends React.Component {
 				onLogout={() => this.onLogout()}
 			/>
 
-			{!this.state.category ?
-				<SelectCategory onSelect={category => this.onSelectCategory(category)} />
+			{this.state.posts ?
+				<div className="posts">
+					{this.state.user ?
+						<PostBox
+							onDidPublish={() => this.loadPosts()}
+							category={this.state.category}
+							user={this.state.user}
+						/>
+					: null}
+					<h2>{this.state.category.name}</h2>
+					{!this.state.isLoadingPosts && !this.state.posts.length ?
+						<p>No posts have been published yet, stand by...</p>
+					:
+						<PostsList
+							isLoadingPosts={this.state.isLoadingPosts}
+							posts={this.state.posts}
+							onLikePost={this.onLikePost.bind(this)}
+							onApprovePost={this.onApprovePost.bind(this)}
+							onRejectPost={this.onRejectPost.bind(this)}
+							showFilter={this.state.user}
+						/>
+					}
+				</div>
 			:
-				this.state.posts ? (
-					<div>
-						<h2>{this.state.category.name}</h2>
-						{this.state.user ?
-							<PostBox
-								onDidPublish={() => this.loadPosts()}
-								category={this.state.category}
-							/>
-						: null}
-						{!this.state.isLoadingPosts && !this.state.posts.length ?
-							<p>No posts have been published yet, stand by...</p>
-						:
-							<PostsList
-								isLoadingPosts={this.state.isLoadingPosts}
-								posts={this.state.posts}
-								onLikePost={this.onLikePost.bind(this)}
-								onApprovePost={this.onApprovePost.bind(this)}
-								onRejectPost={this.onRejectPost.bind(this)}
-								showFilter={this.state.user}
-							/>
-						}
-					</div>
-				) : (
-					<div><p>Loading...</p></div>
-				)
+				<div><p>Loading...</p></div>
 			}
 		</div>
 	}

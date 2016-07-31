@@ -5,17 +5,23 @@ import PostActions from './PostActions'
 export default class Post extends React.Component {
 	render() {
 		let { post } = this.props
+		let date = new Date( post.date )
 
-		return <div className={post.status === "publish" ? "post" : "post draft"}>
-			<header>
-				<img className="avatar" src={post._embedded.author[0].avatar_urls[48]} />
-				<div>
-					<p>{post._embedded.author[0].name}</p>
-					<TimeAgo time={post.date} />
-				</div>
-			</header>
-
+		return <div className="Post">
 			<div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />
+
+			<div className="date">
+				{post.status === 'pending' ?
+					<span className="label">Pending</span>
+				:
+					<span>{date.getHours() + ':' + date.getMinutes()}</span>
+				}
+			</div>
+
+			<div className="user-detail">
+				<img className="avatar" src={post._embedded.author[0].avatar_urls[48]} />
+				{post._embedded.author[0].name}
+			</div>
 
 			<PostActions
 				post={post}

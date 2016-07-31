@@ -29,16 +29,11 @@ export default class SelectCategory extends React.Component {
 	}
 
 	render() {
-
-		if ( this.state.isLoadingCategories ) {
-			return <p>Loading categories...</p>
-		}
-
-		if ( this.state.hasLiveblogsCategory === false ) {
-			return <p>This site has no category with the slug "liveblogs", if you are the site owner, first create a category on your site called "Liveblogs".</p>
-		}
-		return <div>
-			<h2>Select the Liveblog from the list below.</h2>
+		return <div className="app SelectCategory">
+			<div className="branding">
+				<img src="images/logo.png" />
+			</div>
+			<p>Select the Liveblog from the list below.</p>
 			<ul>
 				{this.state.categories.map( category =>
 					<li key={category.id}><a href="#" onClick={() => this.props.onSelect(category)}>{category.name}</a></li>

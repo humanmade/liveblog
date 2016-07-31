@@ -34,11 +34,11 @@ export default class PostActions extends React.Component {
 				<button
 					className="secondary"
 					onClick={()=>this.props.onRejectPost(this.props.post)}
-				>Reject</button>
+				>Discard</button>
 				<button
 					className="primary"
 					onClick={()=>this.props.onApprovePost(this.props.post)}
-				>Approve</button>
+				>Publish</button>
 			</div>
 		}
 	}

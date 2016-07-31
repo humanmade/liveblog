@@ -1,17 +1,39 @@
 import React from 'react'
-import SiteSelect from './SiteSelect'
 
 export default class Welcome extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			url: ''
+		}
+	}
+	onChange(e) {
+		let input = e.target
+		this.setState({
+			url: input.value
+		})
+	}
 	render() {
-		return <div className="app welcome">
+		return <div className="app Welcome">
 			<div className="branding">
-				<img src="https://placehold.it/300x300" />
-				<h1>Liveblog</h1>
+				<img src="images/logo.png" />
 			</div>
-			<SiteSelect onConnect={this.props.onConnect} />
-			<div>
-				<p>Welcome to Liveblog. To get started, enter your site URL above.</p>
-			</div>
+			<p>Welcome to LiveBlog, let's get started!</p>
+			<form
+					className="site-select"
+					onSubmit={e => {e.preventDefault(); this.props.onConnect(this.state.url)}}
+					>
+				<input
+					type="url"
+					required
+					value={this.state.url}
+					onChange={e => this.onChange(e)}
+					placeholder="Your site URL"
+				/>
+				<button
+					className="primary"
+				>Connect</button>
+			</form>
 		</div>
 	}
 }

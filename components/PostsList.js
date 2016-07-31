@@ -24,7 +24,7 @@ export default class PostsList extends React.Component {
 			posts = posts.sort( ( a, b ) => a.date > b.date ? -1 : 1 )
 		}
 
-		return <div>
+		return <div className="PostsList">
 			<p className="post-filter">
 				<span className="group">
 					Sort:
