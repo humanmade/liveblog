@@ -73,7 +73,7 @@ export default class App extends React.Component {
 	}
 
 	onReset() {
-		this.setState({ posts: [], url: '', site: null, user: null })
+		this.setState({ posts: [], url: '', site: null, user: null, category: null })
 		window.localStorage.removeItem('url')
 	}
 
