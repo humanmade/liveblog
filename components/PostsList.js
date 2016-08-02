@@ -36,6 +36,7 @@ export default class PostsList extends React.Component {
 				<Post
 					key={post.id}
 					post={post}
+					onLikePost={this.props.onLikePost}
 				/>
 			)}
 		</div>

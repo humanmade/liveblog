@@ -49,6 +49,17 @@ export default class App extends React.Component {
 				this.setState({ posts })
 			})
 	}
+	onLikePost(post) {
+		window.apiHandler.post( '/liveblog-likes/v1/posts/' + post.id + '/like' )
+			.then( response => {
+				this.setState({
+					posts: this.state.posts.map( p => {
+						p.id === post.id ? p.liveblog_likes = response.count : null
+						return p
+					} )
+				})
+			})
+	}
 	onLogin() {
 		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
@@ -76,7 +87,10 @@ export default class App extends React.Component {
 						user={this.state.user}
 					/>
 				: null}
-				<PostsList posts={this.state.posts} />
+				<PostsList
+					posts={this.state.posts}
+					onLikePost={post => this.onLikePost(post)}
+				/>
 			</div>
 		</div>
 	}
