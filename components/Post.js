@@ -24,6 +24,9 @@ export default class Post extends React.Component {
 
 			<PostActions
 				post={this.props.post}
+				user={this.props.user}
+				onRejectPost={this.props.onRejectPost}
+				onApprovePost={this.props.onApprovePost}
 				onLikePost={this.props.onLikePost}
 			/>
 		</div>
