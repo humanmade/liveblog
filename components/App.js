@@ -42,6 +42,7 @@ export default class App extends React.Component {
 			_embed: true,
 			per_page: 100,
 			context: this.state.user ? 'edit' : 'view',
+			status: this.state.user ? 'any' : 'publish',
 		}
 
 		apiHandler.get('/wp/v2/posts', args)
