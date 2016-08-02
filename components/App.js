@@ -93,6 +93,7 @@ export default class App extends React.Component {
 				: null}
 				<PostsList
 					posts={this.state.posts}
+					showFilter={this.state.user}
 					user={this.state.user}
 					onApprovePost={post => this.onApprovePost(post)}
 					onRejectPost={post => this.onRejectPost(post)}
