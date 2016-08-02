@@ -3,6 +3,7 @@ import api from 'wordpress-rest-api-oauth-1'
 import Header from './Header'
 import PostsList from './PostsList'
 import PostBox from './PostBox'
+import Welcome from './Welcome'
 
 const SITE_URL = 'http://wordpress.dev/'
 const API_KEY = 'OyO4rHs3jHq4'
@@ -15,9 +16,27 @@ export default class App extends React.Component {
 		this.state = {
 			posts: [],
 			user: null,
+			url: null,
 		}
+	}
+	componentWillMount() {
+	}
+	loadPosts() {
+		let args = {
+			_embed: true,
+			per_page: 100,
+			context: this.state.user ? 'edit' : 'view',
+		}
+
+		apiHandler.get('/wp/v2/posts', args)
+			.then(posts => {
+				this.setState({ posts })
+			})
+	}
+	onConnect(url) {
+		this.setState({ url })
 		window.apiHandler = new api({
-			url: SITE_URL,
+			url: url,
 			brokerCredentials: {
 				client: {
 					public: API_KEY,
@@ -33,21 +52,8 @@ export default class App extends React.Component {
 		} else if ( window.apiHandler.hasRequestToken() ) {
 			this.onLogin()
 		}
-	}
-	componentWillMount() {
-		this.loadPosts()
-	}
-	loadPosts() {
-		let args = {
-			_embed: true,
-			per_page: 100,
-			context: this.state.user ? 'edit' : 'view',
-		}
 
-		apiHandler.get('/wp/v2/posts', args)
-			.then(posts => {
-				this.setState({ posts })
-			})
+		this.loadPosts()
 	}
 	onLikePost(post) {
 		window.apiHandler.post( '/liveblog-likes/v1/posts/' + post.id + '/like' )
@@ -74,6 +80,9 @@ export default class App extends React.Component {
 		window.apiHandler.removeCredentials()
 	}
 	render() {
+		if (!this.state.url) {
+			return <Welcome onConnect={url => this.onConnect(url)} />
+		}
 		return <div className="app">
 			<Header
 				user={this.state.user}
