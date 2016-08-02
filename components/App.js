@@ -2,6 +2,7 @@ import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
 import Header from './Header'
 import PostsList from './PostsList'
+import PostBox from './PostBox'
 
 const SITE_URL = 'http://wordpress.dev/'
 const API_KEY = 'OyO4rHs3jHq4'
@@ -69,6 +70,12 @@ export default class App extends React.Component {
 				onLogout={() => this.onLogout()}
 			/>
 			<div className="posts">
+				{this.state.user && this.state.user.capabilities.edit_posts ?
+					<PostBox
+						onDidPublish={() => this.loadPosts()}
+						user={this.state.user}
+					/>
+				: null}
 				<PostsList posts={this.state.posts} />
 			</div>
 		</div>
