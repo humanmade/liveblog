@@ -46,6 +46,12 @@ export default class App extends React.Component {
 
 		apiHandler.get('/wp/v2/posts', args)
 			.then(posts => {
+				posts = posts.map(post => {
+					if (!post.status) {
+						post.status = "publish"
+					}
+					return post
+				})
 				this.setState({ posts })
 			})
 	}
