@@ -4,6 +4,9 @@ import Header from './Header'
 import PostsList from './PostsList'
 
 const SITE_URL = 'http://wordpress.dev/'
+const API_KEY = 'OyO4rHs3jHq4'
+const API_SECRET = 'veTc8srXFJr0GoXaLmz2rt0pHgSkf0EUP9itKPpdWg7Evfgt'
+const CALLBACK_URL = 'http://localhost:3000/'
 
 export default class App extends React.Component {
 	constructor() {
@@ -13,6 +16,13 @@ export default class App extends React.Component {
 		}
 		window.apiHandler = new api({
 			url: SITE_URL,
+			brokerCredentials: {
+				client: {
+					public: API_KEY,
+					secret: API_SECRET,
+				},
+			},
+			callbackURL: CALLBACK_URL,
 		})
 	}
 	componentWillMount() {
