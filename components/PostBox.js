@@ -14,6 +14,7 @@ export default class PostBox extends React.Component {
 		this.setState({isSaving:true})
 		let post = {
 			content: this.state.text,
+			title: this.state.text.replace(/^(.{50}[^\s]*).*/, "$1"),
 			status: status,
 			categories: [ this.props.category.id ],
 			format: 'status',
