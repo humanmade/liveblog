@@ -62,6 +62,14 @@ export default class App extends React.Component {
 		this.setState({ user:null })
 		window.apiHandler.removeCredentials()
 	}
+	onApprovePost(post) {
+		window.apiHandler.post( '/wp/v2/posts/' + post.id, { status : 'publish' } )
+			.then( post => this.loadPosts() )
+	}
+	onRejectPost(post) {
+		window.apiHandler.del( '/wp/v2/posts/' + post.id )
+			.then( () => this.loadPosts() )
+	}
 	render() {
 		return <div className="app">
 			<Header
@@ -76,7 +84,12 @@ export default class App extends React.Component {
 						user={this.state.user}
 					/>
 				: null}
-				<PostsList posts={this.state.posts} />
+				<PostsList
+					posts={this.state.posts}
+					user={this.state.user}
+					onApprovePost={post => this.onApprovePost(post)}
+					onRejectPost={post => this.onRejectPost(post)}
+				/>
 			</div>
 		</div>
 	}
