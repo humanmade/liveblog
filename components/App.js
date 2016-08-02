@@ -76,7 +76,10 @@ export default class App extends React.Component {
 				onLogout={() => this.onLogout()}
 			/>
 			<div className="posts">
-				<PostsList posts={this.state.posts} />
+				<PostsList
+					posts={this.state.posts}
+					showFilter={this.state.user}
+				/>
 			</div>
 		</div>
 	}
