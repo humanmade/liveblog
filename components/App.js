@@ -42,10 +42,17 @@ export default class App extends React.Component {
 			_embed: true,
 			per_page: 100,
 			context: this.state.user ? 'edit' : 'view',
+			status: this.state.user ? 'any' : 'publish',
 		}
 
 		apiHandler.get('/wp/v2/posts', args)
 			.then(posts => {
+				posts = posts.map(post => {
+					if (!post.status) {
+						post.status = "publish"
+					}
+					return post
+				})
 				this.setState({ posts })
 			})
 	}
@@ -73,6 +80,14 @@ export default class App extends React.Component {
 		this.setState({ user:null })
 		window.apiHandler.removeCredentials()
 	}
+	onApprovePost(post) {
+		window.apiHandler.post( '/wp/v2/posts/' + post.id, { status : 'publish' } )
+			.then( post => this.loadPosts() )
+	}
+	onRejectPost(post) {
+		window.apiHandler.del( '/wp/v2/posts/' + post.id )
+			.then( () => this.loadPosts() )
+	}
 	render() {
 		return <div className="app">
 			<Header
@@ -89,6 +104,10 @@ export default class App extends React.Component {
 				: null}
 				<PostsList
 					posts={this.state.posts}
+					showFilter={this.state.user}
+					user={this.state.user}
+					onApprovePost={post => this.onApprovePost(post)}
+					onRejectPost={post => this.onRejectPost(post)}
 					onLikePost={post => this.onLikePost(post)}
 				/>
 			</div>
