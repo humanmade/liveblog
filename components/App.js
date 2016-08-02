@@ -12,7 +12,8 @@ export default class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			posts: []
+			posts: [],
+			user: null,
 		}
 		window.apiHandler = new api({
 			url: SITE_URL,
@@ -24,6 +25,13 @@ export default class App extends React.Component {
 			},
 			callbackURL: CALLBACK_URL,
 		})
+		window.apiHandler.restoreCredentials()
+
+		if ( window.apiHandler.hasCredentials() ) {
+			this.onLoggedIn()
+		} else if ( window.apiHandler.hasRequestToken() ) {
+			this.onLogin()
+		}
 	}
 	componentWillMount() {
 		this.loadPosts()
@@ -32,6 +40,7 @@ export default class App extends React.Component {
 		let args = {
 			_embed: true,
 			per_page: 100,
+			context: this.state.user ? 'edit' : 'view',
 		}
 
 		apiHandler.get('/wp/v2/posts', args)
@@ -39,9 +48,26 @@ export default class App extends React.Component {
 				this.setState({ posts })
 			})
 	}
+	onLogin() {
+		window.apiHandler.authorize().then(() => this.onLoggedIn())
+	}
+	onLoggedIn() {
+		window.apiHandler.get('/wp/v2/users/me', {_envelope: true, context: 'edit'})
+			.then(data => data.body)
+			.then(user => this.setState({ user }))
+			.then(() => this.loadPosts() )
+	}
+	onLogout() {
+		this.setState({ user:null })
+		window.apiHandler.removeCredentials()
+	}
 	render() {
 		return <div className="app">
-			<Header />
+			<Header
+				user={this.state.user}
+				onLogin={() => this.onLogin()}
+				onLogout={() => this.onLogout()}
+			/>
 			<div className="posts">
 				<PostsList posts={this.state.posts} />
 			</div>
