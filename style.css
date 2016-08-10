@@ -166,6 +166,14 @@ body {
 	color: #888;
 	font-size: 12px;
 }
+.PostsList .post-filter .group {
+	margin-right: 10px;
+}
+.PostsList .loading-status {
+	float: right;
+	background: url( 'images/spinner.gif' ) no-repeat center left;
+	padding-left: 20px;
+}
 @media (max-width: 760px) {
 	.PostsList {
 		margin-left: 80px;
