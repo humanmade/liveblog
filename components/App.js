@@ -30,6 +30,12 @@ export default class App extends React.Component {
 		}
 	}
 
+	componentWillUnmount() {
+		if ( this.loadPostsInterval ) {
+			clearInterval(this.loadPostsInterval)
+		}
+	}
+
 	onConnect(url) {
 		let apiHandler = window.apiHandler = new api({
 			url: url,
@@ -112,7 +118,7 @@ export default class App extends React.Component {
 		this.setState({ category })
 
 		setTimeout( () => this.loadPosts() )
-		//setInterval( this.loadPosts.bind(this), 5000 )
+		this.loadPostsInterval = setInterval( this.loadPosts.bind(this), 5000 )
 	}
 
 	loadPosts() {
@@ -167,19 +173,15 @@ export default class App extends React.Component {
 						/>
 					: null}
 					<h2>{this.state.category.name}</h2>
-					{!this.state.isLoadingPosts && !this.state.posts.length ?
-						<p>No posts have been published yet, stand by...</p>
-					:
-						<PostsList
-							isLoadingPosts={this.state.isLoadingPosts}
-							posts={this.state.posts}
-							user={this.state.user}
-							onLikePost={this.onLikePost.bind(this)}
-							onApprovePost={this.onApprovePost.bind(this)}
-							onRejectPost={this.onRejectPost.bind(this)}
-							showFilter={this.state.user}
-						/>
-					}
+					<PostsList
+						isLoadingPosts={this.state.isLoadingPosts}
+						posts={this.state.posts}
+						user={this.state.user}
+						onLikePost={this.onLikePost.bind(this)}
+						onApprovePost={this.onApprovePost.bind(this)}
+						onRejectPost={this.onRejectPost.bind(this)}
+						showFilter={this.state.user}
+					/>
 				</div>
 			:
 				<div><p>Loading...</p></div>
