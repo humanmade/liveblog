@@ -1,0 +1,9 @@
+{
+  "name": "awor_exercise_1-1_completed",
+  "description": "Running webpack to manually bundle files.",
+  "author": "humanmade",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^1.13.1"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "awor_exercise_1-2_completed",
+  "description": "Running webpack --watch to automatically bundle files with updates.",
+  "author": "humanmade",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^1.13.1"
+  }
+}

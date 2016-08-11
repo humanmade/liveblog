@@ -1,0 +1,11 @@
+{
+  "name": "awor_exercise_2-3",
+  "description": "Arrow Functions with ES6.",
+  "author": "humanmade",
+  "license": "MIT",
+  "dependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "webpack": "^1.13.1"
+  }
+}
