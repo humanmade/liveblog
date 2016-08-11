@@ -1,38 +1,42 @@
 import React from 'react'
+import api from 'wordpress-rest-api-oauth-1'
 import PostList from './PostList'
+
+const SITE_URL = 'http://www.example.dev/'
 
 export default class App extends React.Component {
 
   constructor() {
     super()
     this.state = {
-      posts: [
-        {
-          id: 1,
-          title: 'Hello WP',
-        },
-        {
-          id: 2,
-          title: 'Hello JS',
-        },
-        {
-          id: 3,
-          title: 'Hello React',
-        }
-      ]
+      posts: []
     }
+    window.apiHandler = new api({
+      url: SITE_URL
+    })
   }
 
-  refreshPosts() {
-    console.log( 'Posts updated' );
-  }
+  componentWillMount() {
+		this.loadPosts()
+	}
 
+  loadPosts() {
+
+    let args = {
+			_embed: true,
+			per_page: 100
+		}
+
+    apiHandler.get('/wp/v2/posts', args)
+      .then(posts => {
+        this.setState({ posts })
+      })
+  }
 
   render() {
 
     return <PostList
       posts={this.state.posts}
-      refreshPosts={() => this.refreshPosts()}
     />
 
   }

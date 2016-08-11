@@ -1,8 +1,4 @@
 ## Instructions
 
-### App.js
-- Create a constructor function
-- Call super()
-- Set state
-- Move array of posts from render to constructor
-- Pass posts from state as a Prop to PostList
+1. Run `npm wordpress-rest-api-oauth-1`
+2. Import 'wordpress-rest-api-oauth-1' into App.js
