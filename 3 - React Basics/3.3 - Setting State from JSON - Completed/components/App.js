@@ -2,7 +2,7 @@ import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
 import PostList from './PostList'
 
-const SITE_URL = 'http://example.dev/'
+const SITE_URL = 'http://www.example.dev/'
 
 export default class App extends React.Component {
 
@@ -12,7 +12,7 @@ export default class App extends React.Component {
       posts: []
     }
     window.apiHandler = new api({
-      url: SITE_URL,
+      url: SITE_URL
     })
   }
 
@@ -21,10 +21,11 @@ export default class App extends React.Component {
 	}
 
   loadPosts() {
+
     let args = {
-      _embed: true,
-      per_page: 100,
-    }
+			_embed: true,
+			per_page: 100
+		}
 
     apiHandler.get('/wp/v2/posts', args)
       .then(posts => {
@@ -35,7 +36,7 @@ export default class App extends React.Component {
   render() {
 
     return <PostList
-      posts={this.state.posts}      
+      posts={this.state.posts}
     />
 
   }

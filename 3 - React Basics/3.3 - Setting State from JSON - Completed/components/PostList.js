@@ -8,7 +8,9 @@ export default class PostList extends React.Component {
 
     return <div>
 
-      {posts.map( post => <p key={post.id}>{post.title}</p> )}
+      {posts.map( post =>
+        <p key={post.id}>{post.title.rendered}</p>
+      )}
 
     </div>
 
