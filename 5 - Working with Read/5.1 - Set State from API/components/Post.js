@@ -5,7 +5,7 @@ export default class Post extends React.Component {
 		let { post } = this.props
 
     return <p>
-      {post.title.rendered}
+      {post.title}
     </p>
   }
 }
