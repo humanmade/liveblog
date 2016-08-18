@@ -22,3 +22,9 @@ export default class PostActions extends React.Component {
 		}
 	}
 }
+
+PostActions.propTypes = {
+	onRejectPost: React.PropTypes.func.isRequired,
+	onApprovePost: React.PropTypes.func.isRequired,
+	user: React.PropTypes.object,
+}
