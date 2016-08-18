@@ -1,18 +1,6 @@
 import React from 'react'
 
 export default class PostActions extends React.Component {
-	constructor() {
-		super()
-		this.state = {
-			liked: false,
-		}
-	}
-
-	onLikePost() {
-		this.setState({liked:true})
-		this.props.onLikePost(this.props.post)
-	}
-
 	render() {
 		let { post } = this.props
 
