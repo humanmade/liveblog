@@ -327,9 +327,10 @@ body {
 	transform-origin: bottom right;
 }
 .Welcome .branding::before {
-	right: -50%;
+	right: 0;
 	transform: rotate(-3deg);
 	transform-origin: bottom left;
+	width: 50%;
 }
 .Welcome .branding img {
 	max-width: 80%;
