@@ -1,6 +1,18 @@
 import React from 'react'
 
 export default class PostActions extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			liked: false,
+		}
+	}
+
+	onLikePost() {
+		this.setState({liked:true})
+		this.props.onLikePost(this.props.post)
+	}
+
 	render() {
 		let { post } = this.props
 
@@ -32,4 +44,10 @@ export default class PostActions extends React.Component {
 			return null
 		}
 	}
+}
+
+PostActions.propTypes = {
+	onRejectPost: React.PropTypes.func.isRequired,
+	onApprovePost: React.PropTypes.func.isRequired,
+	user: React.PropTypes.object,
 }
