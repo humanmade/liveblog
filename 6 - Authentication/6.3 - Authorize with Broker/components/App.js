@@ -14,33 +14,17 @@ export default class App extends React.Component {
     this.state = {
       posts: []
     }
-    window.apiHandler = new api({
-      url: SITE_URL,
-      brokerCredentials: {
-        client: {
-          public: API_KEY,
-          secret: API_SECRET
-        }
-      },
-      callbackURL: CALLBACK_URL
-    })
+    window.apiHandler = new api()
   }
 
   componentWillMount() {
     this.loadPosts()
-    setInterval( this.loadPosts.bind(this), 5000 )
+    //setInterval( this.loadPosts.bind(this), 5000 )
 	}
 
   componentDidMount() {
-    window.apiHandler.authorize().then(() => this.onLoggedIn())
-  }
 
-	onLoggedIn() {
-		window.apiHandler.get('/wp/v2/users/me', {_envelope: true, context: 'edit'})
-			.then(data => data.body)
-      .then(console.log('Authorized'))
-			.then(() => this.loadPosts() )
-	}
+  }
 
   loadPosts() {
 
