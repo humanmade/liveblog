@@ -30,7 +30,9 @@ export default class App extends React.Component {
 			this.onLoggedIn()
 		} else if ( window.apiHandler.hasRequestToken() ) {
 			this.onLogin()
-		}
+		} else {
+      this.onLogin()
+    }
   }
 
   componentWillMount() {
