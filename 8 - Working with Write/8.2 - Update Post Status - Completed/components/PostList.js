@@ -3,22 +3,22 @@ import Post from './Post'
 
 export default class PostList extends React.Component {
 
-  render() {
+	render() {
 
-    let posts = this.props.posts
+		let posts = this.props.posts
 
-    return <div>
+		return <div>
 
-      {posts.map( post =>
+			{posts.map( post =>
 
-        <Post
-          key={post.id}
-          onApprovePost={this.props.onApprovePost}
+				<Post
+					key={post.id}
+					onApprovePost={this.props.onApprovePost}
 					onRejectPost={this.props.onRejectPost}
-          post={post}
-        />
+					post={post}
+				/>
 
-      )}
+			)}
 
 			<p className="actions">
 				{this.props.user ?
@@ -28,8 +28,8 @@ export default class PostList extends React.Component {
 				}
 			</p>
 
-    </div>
+		</div>
 
-  }
+	}
 
 }

@@ -6,8 +6,8 @@ export default class Post extends React.Component {
 				date = (new Date( post.date )).toISOString().split('T')[1].slice(0, 5)
 
 
-    return <p>
-      {post.title.rendered} [{date}]
-    </p>
-  }
+		return <p>
+			{post.title.rendered} [{date}]
+		</p>
+	}
 }

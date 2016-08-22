@@ -2,10 +2,10 @@ import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
 import PostList from './PostList'
 
-const SITE_URL = 'http://wp-api.webhostingforstudents.com/',
-	API_KEY = 'dLCyNqgXAUfl',
-	API_SECRET = '0h3z9muv7pkcRULquE6VkSAXjYY443VFVyUVwfuDg6IOvfp0',
-	CALLBACK_URL = 'http://localhost:3000/'
+const SITE_URL = 'https://demo.wp-api.org/'
+const API_KEY = 'wMa5iV8tJII5'
+const API_SECRET = 'a8xu7QZVBRZStXaWz6ewcL9C2NmUOX8F1C0V99YUD2FkoaS5'
+const CALLBACK_URL = 'http://localhost:3000/'
 
 export default class App extends React.Component {
 
