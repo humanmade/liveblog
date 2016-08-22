@@ -28,7 +28,7 @@ export default class App extends React.Component {
 
 		if ( window.apiHandler.hasCredentials() ) {
 			this.onLoggedIn()
-		} else if ( window.apiHandler.hasRequestToken() ) {
+		} else {
 			this.onLogin()
 		}
 	}
