@@ -5,41 +5,38 @@ import PostList from './PostList'
 const SITE_URL = 'http://www.example.dev/'
 
 export default class App extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			posts: []
+		}
+		window.apiHandler = new api({
+			url: SITE_URL
+		})
+	}
 
-  constructor() {
-    super()
-    this.state = {
-      posts: []
-    }
-    window.apiHandler = new api({
-      url: SITE_URL
-    })
-  }
-
-  componentWillMount() {
+	componentWillMount() {
 		this.loadPosts()
 	}
 
-  loadPosts() {
+	loadPosts() {
 
-    let args = {
+		let args = {
 			_embed: true,
 			per_page: 100
 		}
 
-    apiHandler.get('/wp/v2/posts', args)
-      .then(posts => {
-        this.setState({ posts })
-      })
-  }
+		apiHandler.get('/wp/v2/posts', args)
+			.then(posts => {
+				this.setState({ posts })
+			})
+	}
 
-  render() {
+	render() {
 
-    return <PostList
-      posts={this.state.posts}
-    />
+		return <PostList
+			posts={this.state.posts}
+		/>
 
-  }
-
-
+	}
 }

@@ -4,8 +4,8 @@ export default class Post extends React.Component {
 	render() {
 		let { post } = this.props
 
-    return <p>
-      {post.title}
-    </p>
-  }
+		return <p>
+			{post.title}
+		</p>
+	}
 }
