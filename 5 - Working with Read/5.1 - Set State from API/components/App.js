@@ -5,36 +5,33 @@ import PostList from './PostList'
 const SITE_URL = 'http://www.example.dev/'
 
 export default class App extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			posts: []
+		}
+	}
 
-  constructor() {
-    super()
-    this.state = {
-      posts: []
-    }
-  }
-
-  componentWillMount() {
+	componentWillMount() {
 
 	}
 
-  loadPosts() {
+	loadPosts() {
 
-    let args = {
+		let args = {
 		}
 
-    apiHandler.get('/wp/v2/posts', args)
-      .then(
+		apiHandler.get('/wp/v2/posts', args)
+			.then(
 
-      )
-  }
+			)
+	}
 
-  render() {
+	render() {
 
-    return <PostList
-      posts={this.state.posts}
-    />
+		return <PostList
+			posts={this.state.posts}
+		/>
 
-  }
-
-
+	}
 }

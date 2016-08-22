@@ -4,7 +4,7 @@ export default class Post extends React.Component {
 	render() {
 		let { post } = this.props
 
-    return <div className="Post">
+		return <div className="Post">
 			<div dangerouslySetInnerHTML={{__html: post.content.rendered}} />
 
 			{typeof post.liveblog_likes === 'number' ?
@@ -18,6 +18,6 @@ export default class Post extends React.Component {
 				onApprovePost={this.props.onApprovePost}
 			/>
 
-    </div>
-  }
+		</div>
+	}
 }
