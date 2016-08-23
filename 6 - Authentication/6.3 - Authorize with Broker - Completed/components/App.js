@@ -33,12 +33,6 @@ export default class App extends React.Component {
 		}
 	}
 
-
-	componentWillMount() {
-		this.loadPosts()
-		//setInterval( this.loadPosts.bind(this), 5000 )
-	}
-
 	onLogin() {
 		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
