@@ -3,7 +3,7 @@ import api from 'wordpress-rest-api-oauth-1'
 import Header from './Header'
 import PostsList from './PostsList'
 
-const SITE_URL = 'http://wordpress.dev/'
+const SITE_URL = 'https://aweekofrest.hm/liveblog/'
 
 export default class App extends React.Component {
 	constructor() {
