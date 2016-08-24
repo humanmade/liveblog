@@ -1,20 +1,22 @@
 import React from 'react'
+import RichTextEditor from 'react-rte-image'
 
 export default class PostBox extends React.Component {
 	constructor() {
 		super()
 
 		this.state = {
-			text: '',
+			text: RichTextEditor.createEmptyValue(),
 			isSaving: false,
 		}
 	}
 
 	onCreatePost(status) {
 		this.setState({isSaving:true})
+		let text = this.state.text.toString('html')
 		let post = {
-			content: this.state.text,
-			title: this.state.text.replace(/^(.{50}[^\s]*).*/, "$1"),
+			content: text,
+			title: text.replace(/^(.{50}[^\s]*).*/, "$1"),
 			status: status,
 			categories: [ this.props.category.id ],
 			format: 'status',
@@ -22,7 +24,7 @@ export default class PostBox extends React.Component {
 		window.apiHandler.post('/wp/v2/posts', post)
 			.then(data => {
 				this.props.onDidPublish(data)
-				this.setState({ isSaving: false, text: '' })
+				this.setState({ isSaving: false, text: RichTextEditor.createEmptyValue() })
 			})
 	}
 
@@ -32,12 +34,12 @@ export default class PostBox extends React.Component {
 				<img src={this.props.user.avatar_urls['96']} />
 				You
 			</div>
-			<textarea
-				value={this.state.text}
-				rows={4}
-				onChange={e => this.setState({ text: e.target.value })}
-				disabled={this.state.isSaving}
-			/>
+			<div className="editor">
+				<RichTextEditor
+					value={this.state.text}
+					onChange={value => this.setState({ text: value })}
+				/>
+			</div>
 			{this.state.isSaving ?
 				<p>Saving...</p>
 			:
