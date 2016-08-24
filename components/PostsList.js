@@ -31,7 +31,15 @@ export default class PostsList extends React.Component {
 						>Pending</a>
 					</span>
 				: null}
+				{this.props.isLoadingPosts ?
+					<span className="loading-status">
+						Loading Posts...
+					</span>
+				: null }
 			</p>
+			{this.props.posts.length == 0 ?
+				<p>No posts have been published yet, stand by...</p>
+			: null}
 			{posts.map( post =>
 				<Post
 					key={post.id}
