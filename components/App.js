@@ -5,9 +5,9 @@ import PostsList from './PostsList'
 import PostBox from './PostBox'
 import Welcome from './Welcome'
 
-const SITE_URL = 'http://wordpress.dev/'
-const API_KEY = 'OyO4rHs3jHq4'
-const API_SECRET = 'veTc8srXFJr0GoXaLmz2rt0pHgSkf0EUP9itKPpdWg7Evfgt'
+const SITE_URL = 'https://aweekofrest.hm/liveblog/'
+const API_KEY = 'VTZlBw9i1CAx'
+const API_SECRET = 'yyPrRjuPqz0C7feU4GlGn6yFJOskqj4jvYBCGUxICBOGFxTK'
 const CALLBACK_URL = 'http://localhost:3000/'
 
 export default class App extends React.Component {
