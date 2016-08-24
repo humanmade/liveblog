@@ -2,9 +2,9 @@ import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
 import PostList from './PostList'
 
-const SITE_URL = 'https://demo.wp-api.org/'
-const API_KEY = 'wMa5iV8tJII5'
-const API_SECRET = 'a8xu7QZVBRZStXaWz6ewcL9C2NmUOX8F1C0V99YUD2FkoaS5'
+const SITE_URL = 'http://demo.wp-api.org/'
+const API_KEY = 'JO4vWNuOLE1u'
+const API_SECRET = 'h16KOhgBIvGbBJajxhGTrXGwx3CX2pYxulOcPZEjzZ6y2Ccn'
 const CALLBACK_URL = 'http://localhost:3000/'
 
 export default class App extends React.Component {
@@ -33,12 +33,12 @@ export default class App extends React.Component {
 		}
 	}
 
-	onLogin() {
+	onLogin() {	
 		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
 
 	onLoggedIn() {
-		console.log( "Logged In" )
+		this.loadPosts()
 	}
 
 	loadPosts() {
