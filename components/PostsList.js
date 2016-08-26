@@ -22,11 +22,11 @@ export default class PostsList extends React.Component {
 					<span className="group">
 						Filter:
 						<a
-							className={ this.state.filter == 'all' ? 'active' : ''}
+							className={ this.state.filter === 'all' ? 'active' : ''}
 							onClick={() => this.setState({ filter: 'all' })}
 						>All</a>
 						<a
-							className={ this.state.filter == 'pending' ? 'active' : ''}
+							className={ this.state.filter === 'pending' ? 'active' : ''}
 							onClick={() => this.setState({ filter: 'pending' })}
 						>Pending</a>
 					</span>
@@ -37,7 +37,7 @@ export default class PostsList extends React.Component {
 					</span>
 				: null }
 			</p>
-			{this.props.posts.length == 0 ?
+			{this.props.posts.length === 0 ?
 				<p>No posts have been published yet, stand by...</p>
 			: null}
 			{posts.map( post =>
