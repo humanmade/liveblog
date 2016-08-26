@@ -9,7 +9,8 @@ export default class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			posts: []
+			posts: [],
+			isLoadingPosts: false,
 		}
 		window.apiHandler = new api({
 			url: SITE_URL,
