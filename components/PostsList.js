@@ -37,7 +37,7 @@ export default class PostsList extends React.Component {
 					</span>
 				: null }
 			</p>
-			{this.props.posts.length == 0 ?
+			{this.props.posts.length === 0 ?
 				<p>No posts have been published yet, stand by...</p>
 			: null}
 			{posts.map( post =>
