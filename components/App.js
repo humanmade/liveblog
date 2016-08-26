@@ -14,6 +14,7 @@ export default class App extends React.Component {
 		super()
 		this.state = {
 			posts: [],
+			isLoadingPosts: false,
 			user: null,
 		}
 		window.apiHandler = new api({
@@ -52,7 +53,7 @@ export default class App extends React.Component {
 						post.status = "publish"
 					}
 					return post
-				})
+			})
 				this.setState({ posts })
 			})
 	}
