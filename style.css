@@ -169,6 +169,9 @@ body {
 .PostsList .post-filter .group {
 	margin-right: 10px;
 }
+.PostsList .post-filter .group a {
+	padding-left: 5px;
+}
 .PostsList .loading-status {
 	float: right;
 	background: url( 'images/spinner.gif' ) no-repeat center left;
