@@ -23,6 +23,8 @@ export default class App extends React.Component {
 	componentWillMount() {
 	}
 	loadPosts() {
+		this.setState({ isLoadingPosts: true })
+
 		let args = {
 			_embed: true,
 			per_page: 100,
@@ -37,8 +39,8 @@ export default class App extends React.Component {
 						post.status = "publish"
 					}
 					return post
-			})
-				this.setState({ posts })
+				})
+				this.setState({ posts, isLoadingPosts: false })
 			})
 	}
 	onConnect(url) {
@@ -114,6 +116,7 @@ export default class App extends React.Component {
 				: null}
 				<PostsList
 					posts={this.state.posts}
+					isLoadingPosts={this.state.isLoadingPosts}
 					showFilter={this.state.user}
 					user={this.state.user}
 					onApprovePost={post => this.onApprovePost(post)}
