@@ -33,12 +33,16 @@ export default class App extends React.Component {
 		}
 	}
 
-	onLogin() {	
+	onLogin() {
 		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
 
 	onLoggedIn() {
 		this.loadPosts()
+	}
+
+	componentWillMount() {
+		// this.loadPosts()
 	}
 
 	loadPosts() {
