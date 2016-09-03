@@ -1,14 +1,8 @@
-// Create a variable named id with a value of 2
-// Create a post object with a title property of "Hello ES6"
-// and an id of 1
-let id = 3,
+let title = 'Hello ES6',
     post = {
-      title: 'Hello ES6'
+      title: 'Hello ES5'
     }
 
-// Use shorthand property notation to assign
-// an id to the post object
-post = { id }
+post = { title }
 
-// Log out the post object
 console.log( post );
