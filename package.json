@@ -24,6 +24,7 @@
   "dependencies": {
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "wordpress-rest-api-oauth-1": "^1.0.8"
+    "wordpress-rest-api-oauth-1": "^1.0.8",
+    "whatwg-fetch": "^1.0.0"
   }
 }
