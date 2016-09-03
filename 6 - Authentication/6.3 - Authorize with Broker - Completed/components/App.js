@@ -24,17 +24,7 @@ export default class App extends React.Component {
 			},
 			callbackURL: CALLBACK_URL
 		})
-		window.apiHandler.restoreCredentials()
 
-		if ( window.apiHandler.hasCredentials() ) {
-			this.onLoggedIn()
-		} else {
-			this.onLogin()
-		}
-	}
-
-	onLogin() {
-		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
 
 	onLoggedIn() {
@@ -42,7 +32,7 @@ export default class App extends React.Component {
 	}
 
 	componentWillMount() {
-		// this.loadPosts()
+		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
 
 	loadPosts() {

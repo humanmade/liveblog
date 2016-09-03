@@ -1,6 +1,6 @@
 {
-  "name": "awor_exercise_2-1",
-  "description": "Using ES6 Export and Import.",
+  "name": "a-week-of-rest-exercises",
+  "description": "Exercise files for A Week of REST bootcamp.",
   "author": "humanmade",
   "license": "MIT",
   "dependencies": {

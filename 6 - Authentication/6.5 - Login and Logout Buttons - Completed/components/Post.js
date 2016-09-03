@@ -5,8 +5,7 @@ export default class Post extends React.Component {
 		let { post } = this.props
 
 		return <p>
-			{post.title.rendered}
-			{post.status !== '' ? post.status : 'a'}
+			{post.title.rendered}			
 		</p>
 	}
 }

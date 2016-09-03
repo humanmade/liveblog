@@ -3,8 +3,8 @@ import api from 'wordpress-rest-api-oauth-1'
 import PostList from './PostList'
 
 const SITE_URL = 'https://demo.wp-api.org/'
-const API_KEY = 'wMa5iV8tJII5'
-const API_SECRET = 'a8xu7QZVBRZStXaWz6ewcL9C2NmUOX8F1C0V99YUD2FkoaS5'
+const API_KEY = 'JO4vWNuOLE1u'
+const API_SECRET = 'h16KOhgBIvGbBJajxhGTrXGwx3CX2pYxulOcPZEjzZ6y2Ccn'
 const CALLBACK_URL = 'http://localhost:3000/'
 
 export default class App extends React.Component {
@@ -24,23 +24,9 @@ export default class App extends React.Component {
 			},
 			callbackURL: CALLBACK_URL
 		})
-		window.apiHandler.restoreCredentials()
-
-		if ( window.apiHandler.hasCredentials() ) {
-			this.onLoggedIn()
-		} else if ( window.apiHandler.hasRequestToken() ) {
-			this.onLogin()
-		} else {
-			this.onLogin()
-		}
 	}
 
 	componentWillMount() {
-		this.loadPosts()
-		//setInterval( this.loadPosts.bind(this), 5000 )
-	}
-
-	onLogin() {
 		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
 
@@ -51,7 +37,7 @@ export default class App extends React.Component {
 			.then(() => this.loadPosts() )
 	}
 
-	loadPosts() {		
+	loadPosts() {
 
 		let args = {
 			_embed: true,

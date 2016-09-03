@@ -1,6 +1,6 @@
 {
-  "name": "awor_exercise_1-2_completed",
-  "description": "Running webpack --watch to automatically bundle files with updates.",
+  "name": "a-week-of-rest-exercises",
+  "description": "Exercise files for A Week of REST bootcamp.",
   "author": "humanmade",
   "license": "MIT",
   "dependencies": {
