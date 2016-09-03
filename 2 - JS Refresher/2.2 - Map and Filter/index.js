@@ -16,12 +16,10 @@ let posts = [
     drafts
 
 
-// Rewrite map with an arrow function
-postList = posts.map( function( post ) { return '<li>' + post.title + '</li>' } )
+// Map through posts
+// Wrap each post.title in a list item
+// Save and log out as postList
 
-console.log( postList )
 
-// Rewrite filter with an arrow function
-drafts = posts.filter( function( post ) { return post.status === 'draft' } )
-
-console.log( drafts )
+// Filter posts with post.status of drafts
+// Save as 'drafts' and log out
