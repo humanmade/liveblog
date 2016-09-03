@@ -1,1 +1,1 @@
-console.log( 'Example 2 - Updated' );
+console.log( 'Example 2 - Update' );

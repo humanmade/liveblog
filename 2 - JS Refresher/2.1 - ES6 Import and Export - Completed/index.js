@@ -1,3 +1,3 @@
-import logName from './helpers';
+import logName from './helpers'
 
-logName( 'Joe' );
+logName( 'Joe' )

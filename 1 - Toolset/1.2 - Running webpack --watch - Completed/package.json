@@ -4,6 +4,6 @@
   "author": "humanmade",
   "license": "MIT",
   "dependencies": {
-    "webpack": "^1.13.1"
+    "webpack": "latest"
   }
 }
