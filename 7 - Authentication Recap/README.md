@@ -10,3 +10,7 @@
 3. Call .authorize
 4. Set post arguments
 5. Connect login and logout to buttons
+
+#### Revisit Applicability
+
+- Pop quiz on what authentication to use and if to decouple
