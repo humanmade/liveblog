@@ -1,6 +1,5 @@
 class Component {
-
-  constructor() {
+	constructor() {
 		this.state = {}
 	}
 
@@ -16,7 +15,7 @@ class MyComponent extends Component {
 }
 
 let c = new Component(),
-	cm = new MyComponent()
+	mc = new MyComponent()
 
 console.log( c.render() )
-console.log( cm.render() )
+console.log( mc.render() )

@@ -8,10 +8,14 @@ export default class PostList extends React.Component {
 
 		return <div>
 
-			<Post
-				key={post.id}
-				post={post}
-			/>
+			{posts.map( post =>
+
+				<Post
+					key={post.id}
+					post={post}
+				/>
+
+			)}
 
 		</div>
 

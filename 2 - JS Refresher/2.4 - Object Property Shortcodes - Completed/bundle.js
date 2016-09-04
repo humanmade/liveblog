@@ -51,7 +51,7 @@
 /* 1 */
 /***/ function(module, exports) {
 
-	eval("'use strict';\n\nvar title = 'Hello ES6',\n    post = {\n  title: 'Hello ES5'\n};\n\npost = { title: title };\n\nconsole.log(post);//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2luZGV4LmpzP2JiMWYiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG52YXIgdGl0bGUgPSAnSGVsbG8gRVM2JyxcbiAgICBwb3N0ID0ge1xuICB0aXRsZTogJ0hlbGxvIEVTNSdcbn07XG5cbnBvc3QgPSB7IHRpdGxlOiB0aXRsZSB9O1xuXG5jb25zb2xlLmxvZyhwb3N0KTtcblxuXG4vKioqKioqKioqKioqKioqKipcbiAqKiBXRUJQQUNLIEZPT1RFUlxuICoqIC4vaW5kZXguanNcbiAqKiBtb2R1bGUgaWQgPSAxXG4gKiogbW9kdWxlIGNodW5rcyA9IDBcbiAqKi8iXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9");
+	eval("'use strict';\n\nvar title = 'Hello ES6',\n    post = {\n  title: 'Hello ES5'\n};\n\npost = { title: title };\n\n// Same as\n// post.title = title\n\nconsole.log(post);//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMS5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2luZGV4LmpzP2JiMWYiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnO1xuXG52YXIgdGl0bGUgPSAnSGVsbG8gRVM2JyxcbiAgICBwb3N0ID0ge1xuICB0aXRsZTogJ0hlbGxvIEVTNSdcbn07XG5cbnBvc3QgPSB7IHRpdGxlOiB0aXRsZSB9O1xuXG4vLyBTYW1lIGFzXG4vLyBwb3N0LnRpdGxlID0gdGl0bGVcblxuY29uc29sZS5sb2cocG9zdCk7XG5cblxuLyoqKioqKioqKioqKioqKioqXG4gKiogV0VCUEFDSyBGT09URVJcbiAqKiAuL2luZGV4LmpzXG4gKiogbW9kdWxlIGlkID0gMVxuICoqIG1vZHVsZSBjaHVua3MgPSAwXG4gKiovIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==");
 
 /***/ }
 /******/ ]);

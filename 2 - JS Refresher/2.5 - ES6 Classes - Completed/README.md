@@ -1,6 +1,7 @@
 ### Instructions
 
 - Run 'npm install'
+- Run 'webpack --watch'
 - Open index.js
 - Create a new class called Component
 - Create a constructor() method and assign this.state to an empty object
