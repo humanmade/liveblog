@@ -3,10 +3,11 @@ import api from 'wordpress-rest-api-oauth-1'
 import PostBox from './PostBox'
 import PostList from './PostList'
 
-const SITE_URL = 'http://wp-api.webhostingforstudents.com/',
-	API_KEY = 'dLCyNqgXAUfl',
-	API_SECRET = '0h3z9muv7pkcRULquE6VkSAXjYY443VFVyUVwfuDg6IOvfp0',
-	CALLBACK_URL = 'http://localhost:3000/'
+const SITE_URL = 'http://awor.local/'
+const API_KEY = 'JTFiOCfq1eGE'
+const API_SECRET = 'R5ZP9OEJpX0zPAYfSgCtCqisDH8eVdRlSb5W66eTDnjmlW03'
+const CALLBACK_URL = 'http://localhost:3000/'
+const BROKER_URL = 'http://awor.local/auth-broker/'
 
 export default class App extends React.Component {
 
@@ -18,6 +19,7 @@ export default class App extends React.Component {
 		}
 		window.apiHandler = new api({
 			url: SITE_URL,
+			brokerURL: BROKER_URL,
 			brokerCredentials: {
 				client: {
 					public: API_KEY,

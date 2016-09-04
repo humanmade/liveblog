@@ -2,10 +2,11 @@ import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
 import PostList from './PostList'
 
-const SITE_URL = '',
-	API_KEY = '',
-	API_SECRET = '',
-	CALLBACK_URL = ''
+const SITE_URL = ''
+const API_KEY = ''
+const API_SECRET = ''
+const CALLBACK_URL = ''
+const BROKER_URL = ''
 
 export default class App extends React.Component {
 
