@@ -7,6 +7,7 @@ const SITE_URL = 'https://aweekofrest.hm/liveblog/'
 const API_KEY = 'VTZlBw9i1CAx'
 const API_SECRET = 'yyPrRjuPqz0C7feU4GlGn6yFJOskqj4jvYBCGUxICBOGFxTK'
 const CALLBACK_URL = 'http://localhost:3000/'
+const BROKER_URL = 'http://awor.local/auth-broker/'
 
 export default class App extends React.Component {
 	constructor() {
@@ -18,6 +19,7 @@ export default class App extends React.Component {
 		}
 		window.apiHandler = new api({
 			url: SITE_URL,
+			brokerURL: BROKER_URL,
 			brokerCredentials: {
 				client: {
 					public: API_KEY,
