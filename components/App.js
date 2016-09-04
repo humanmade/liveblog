@@ -5,10 +5,11 @@ import PostsList from './PostsList'
 import PostBox from './PostBox'
 import Welcome from './Welcome'
 
-const SITE_URL = 'https://aweekofrest.hm/liveblog/'
-const API_KEY = 'VTZlBw9i1CAx'
-const API_SECRET = 'yyPrRjuPqz0C7feU4GlGn6yFJOskqj4jvYBCGUxICBOGFxTK'
+const SITE_URL = 'http://awor.local/'
+const API_KEY = 'JTFiOCfq1eGE'
+const API_SECRET = 'R5ZP9OEJpX0zPAYfSgCtCqisDH8eVdRlSb5W66eTDnjmlW03'
 const CALLBACK_URL = 'http://localhost:3000/'
+const BROKER_URL = 'http://awor.local/auth-broker/'
 
 export default class App extends React.Component {
 	constructor() {
