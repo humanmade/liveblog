@@ -2,7 +2,7 @@ import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
 import PostList from './PostList'
 
-const SITE_URL = 'http://www.example.dev/'
+const SITE_URL = 'http://awor.local/'
 
 export default class App extends React.Component {
 	constructor() {

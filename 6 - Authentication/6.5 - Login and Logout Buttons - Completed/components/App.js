@@ -2,11 +2,11 @@ import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
 import PostList from './PostList'
 
-const SITE_URL = 'https://demo.wp-api.org/'
-const API_KEY = 'JO4vWNuOLE1u'
-const API_SECRET = 'h16KOhgBIvGbBJajxhGTrXGwx3CX2pYxulOcPZEjzZ6y2Ccn'
+const SITE_URL = 'http://awor.local/'
+const API_KEY = 'JTFiOCfq1eGE'
+const API_SECRET = 'R5ZP9OEJpX0zPAYfSgCtCqisDH8eVdRlSb5W66eTDnjmlW03'
 const CALLBACK_URL = 'http://localhost:3000/'
-
+const BROKER_URL = 'http://awor.local/auth-broker/'
 
 export default class App extends React.Component {
 	constructor() {
@@ -17,6 +17,7 @@ export default class App extends React.Component {
 		}
 		window.apiHandler = new api({
 			url: SITE_URL,
+			brokerURL: BROKER_URL,
 			brokerCredentials: {
 				client: {
 					public: API_KEY,
@@ -28,7 +29,7 @@ export default class App extends React.Component {
 	}
 
 	onLogin() {
-		window.apiHandler.authorize().then(() => this.onLoggedIn())		
+		window.apiHandler.authorize().then(() => this.onLoggedIn())
 	}
 
 	onLoggedIn() {
