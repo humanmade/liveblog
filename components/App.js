@@ -3,6 +3,7 @@ import api from 'wordpress-rest-api-oauth-1'
 import Header from './Header'
 import PostsList from './PostsList'
 import PostBox from './PostBox'
+import Welcome from './Welcome'
 
 const SITE_URL = 'http://awor.local/'
 const API_KEY = 'JTFiOCfq1eGE'
@@ -17,28 +18,10 @@ export default class App extends React.Component {
 			posts: [],
 			isLoadingPosts: false,
 			user: null,
-		}
-		window.apiHandler = new api({
-			url: SITE_URL,
-			brokerURL: BROKER_URL,
-			brokerCredentials: {
-				client: {
-					public: API_KEY,
-					secret: API_SECRET,
-				},
-			},
-			callbackURL: CALLBACK_URL,
-		})
-		window.apiHandler.restoreCredentials()
-
-		if ( window.apiHandler.hasCredentials() ) {
-			this.onLoggedIn()
-		} else if ( window.apiHandler.hasRequestToken() ) {
-			this.onLogin()
+			url: null,
 		}
 	}
 	componentWillMount() {
-		this.loadPosts()
 	}
 	loadPosts() {
 		this.setState({ isLoadingPosts: true })
@@ -60,6 +43,28 @@ export default class App extends React.Component {
 				})
 				this.setState({ posts, isLoadingPosts: false })
 			})
+	}
+	onConnect(url) {
+		this.setState({ url })
+		window.apiHandler = new api({
+			url: url,
+			brokerCredentials: {
+				client: {
+					public: API_KEY,
+					secret: API_SECRET,
+				},
+			},
+			callbackURL: CALLBACK_URL,
+		})
+		window.apiHandler.restoreCredentials()
+
+		if ( window.apiHandler.hasCredentials() ) {
+			this.onLoggedIn()
+		} else if ( window.apiHandler.hasRequestToken() ) {
+			this.onLogin()
+		}
+
+		this.loadPosts()
 	}
 	onLikePost(post) {
 		window.apiHandler.post( '/liveblog-likes/v1/posts/' + post.id + '/like' )
@@ -94,6 +99,9 @@ export default class App extends React.Component {
 			.then( () => this.loadPosts() )
 	}
 	render() {
+		if (!this.state.url) {
+			return <Welcome onConnect={url => this.onConnect(url)} />
+		}
 		return <div className="app">
 			<Header
 				user={this.state.user}
