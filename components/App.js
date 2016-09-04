@@ -4,8 +4,8 @@ import Header from './Header'
 import PostsList from './PostsList'
 
 const SITE_URL = 'http://awor.local/'
-const API_KEY = 'VTZlBw9i1CAx'
-const API_SECRET = 'yyPrRjuPqz0C7feU4GlGn6yFJOskqj4jvYBCGUxICBOGFxTK'
+const API_KEY = 'JTFiOCfq1eGE'
+const API_SECRET = 'R5ZP9OEJpX0zPAYfSgCtCqisDH8eVdRlSb5W66eTDnjmlW03'
 const CALLBACK_URL = 'http://localhost:3000/'
 const BROKER_URL = 'http://awor.local/auth-broker/'
 
