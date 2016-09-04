@@ -2,6 +2,7 @@ import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
 import Header from './Header'
 import PostsList from './PostsList'
+import PostBox from './PostBox'
 
 const SITE_URL = 'http://awor.local/'
 const API_KEY = 'JTFiOCfq1eGE'
@@ -73,6 +74,14 @@ export default class App extends React.Component {
 		this.setState({ user:null })
 		window.apiHandler.removeCredentials()
 	}
+	onApprovePost(post) {
+		window.apiHandler.post( '/wp/v2/posts/' + post.id, { status : 'publish' } )
+			.then( post => this.loadPosts() )
+	}
+	onRejectPost(post) {
+		window.apiHandler.del( '/wp/v2/posts/' + post.id )
+			.then( () => this.loadPosts() )
+	}
 	render() {
 		return <div className="app">
 			<Header
@@ -81,10 +90,19 @@ export default class App extends React.Component {
 				onLogout={() => this.onLogout()}
 			/>
 			<div className="posts">
+				{this.state.user && this.state.user.capabilities.edit_posts ?
+					<PostBox
+						onDidPublish={() => this.loadPosts()}
+						user={this.state.user}
+					/>
+				: null}
 				<PostsList
 					posts={this.state.posts}
 					isLoadingPosts={this.state.isLoadingPosts}
 					showFilter={this.state.user}
+					user={this.state.user}
+					onApprovePost={post => this.onApprovePost(post)}
+					onRejectPost={post => this.onRejectPost(post)}
 				/>
 			</div>
 		</div>

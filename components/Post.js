@@ -1,4 +1,5 @@
 import React from 'react'
+import PostActions from './PostActions'
 
 export default class Post extends React.Component {
 	render() {
@@ -20,6 +21,13 @@ export default class Post extends React.Component {
 				<img className="avatar" src={post._embedded.author[0].avatar_urls[48]} />
 				{post._embedded.author[0].name}
 			</div>
+
+			<PostActions
+				post={this.props.post}
+				user={this.props.user}
+				onRejectPost={this.props.onRejectPost}
+				onApprovePost={this.props.onApprovePost}
+			/>
 		</div>
 	}
 }
