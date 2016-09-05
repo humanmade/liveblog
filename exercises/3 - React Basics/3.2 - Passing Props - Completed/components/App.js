@@ -1,27 +1,14 @@
 import React from 'react'
-import PostList from './PostList'
+import MainContent from './MainContent'
 
 export default class App extends React.Component {
-
-	refreshPosts() {
-		console.log( 'Posts updated' );
-	}
-
 	render() {
-		let posts = [
-			{
-				id: 1,
-				title: 'Hello WP',
-			},
-			{
-				id: 2,
-				title: 'Hello JS',
-			}
-		]
+		let title = 'Welcome!'
+		let content = 'A React project'
 
-		return <PostList
-			posts={posts}
-			refreshPosts={() => this.refreshPosts()}
+		return <MainContent
+			title={title}
+			content={content}
 		/>
 	}
 }

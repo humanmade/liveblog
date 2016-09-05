@@ -1,22 +1,13 @@
-var path = require('path'),
-		webpack = require('webpack')
+var webpack = require('webpack')
 
 module.exports = {
 	devtool: 'cheap-eval-source-map',
 	entry: [
-		'react-hot-loader/patch',
-		'webpack-dev-server/client?http://localhost:3000',
-		'webpack/hot/only-dev-server',
 		'./index'
 	],
 	output: {
-		path: path.join(__dirname, 'dist'),
-		filename: 'bundle.js',
-		publicPath: '/'
+		filename: 'bundle.js'
 	},
-	plugins: [
-		new webpack.HotModuleReplacementPlugin()
-	],
 	module: {
 		loaders: [
 			{
