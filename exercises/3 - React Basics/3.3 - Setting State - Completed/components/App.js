@@ -1,35 +1,26 @@
 import React from 'react'
-import PostList from './PostList'
+import Count from './Count'
+import CounterButton from './CounterButton'
 
 export default class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			posts: [
-				{
-					id: 1,
-					title: 'Hello WP',
-				},
-				{
-					id: 2,
-					title: 'Hello JS',
-				},
-				{
-					id: 3,
-					title: 'Hello React',
-				}
-			]
+			count: '0'
 		}
 	}
-
-	refreshPosts() {
-		console.log( 'Posts updated' );
+	addToCounter() {
+		let newCount =  parseInt(this.state.count) + 1
+		this.setState({count: newCount})
 	}
-
 	render() {
-		return <PostList
-			posts={this.state.posts}
-			refreshPosts={() => this.refreshPosts()}
-		/>
+		return <p>
+			<Count
+				count={this.state.count}
+			/>
+			<CounterButton
+				update={() => this.addToCounter()}
+			/>
+		</p>
 	}
 }
