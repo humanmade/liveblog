@@ -1,6 +1,5 @@
 import React from 'react'
 import api from 'wordpress-rest-api-oauth-1'
-import PostList from './PostList'
 
 const SITE_URL = 'http://awor.local/'
 
@@ -10,33 +9,19 @@ export default class App extends React.Component {
 		this.state = {
 			posts: []
 		}
-		window.apiHandler = new api({
+		window.api = new api({
 			url: SITE_URL
 		})
 	}
-
 	componentWillMount() {
-		this.loadPosts()
-	}
-
-	loadPosts() {
-
-		let args = {
-			_embed: true,
-			per_page: 100
-		}
-
-		apiHandler.get('/wp/v2/posts', args)
+		window.api.get('/wp/v2/posts')
 			.then(posts => {
 				this.setState({ posts })
 			})
 	}
-
 	render() {
-
-		return <PostList
-			posts={this.state.posts}
-		/>
-
+		return <ul>
+			{this.state.posts.map( post => <li key={post.id}>{post.title.rendered}</li> )}
+		</ul>
 	}
 }
