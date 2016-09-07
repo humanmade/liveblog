@@ -32,5 +32,5 @@
 - Call the loadItems method
 - Setup a timer to loadItems every 5 seconds
 - Make sure to bind 'this' to the loadItems call
-- Add a componentWillUnmout method
+- Add a componentWillUnmount method
 - Use clearInterval to clear out this.interval
