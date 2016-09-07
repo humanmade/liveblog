@@ -1,0 +1,11 @@
+{
+  "name": "a-week-of-rest-exercises",
+  "description": "Exercise files for A Week of REST bootcamp.",
+  "author": "humanmade",
+  "license": "MIT",
+  "dependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "webpack": "^1.13.1"
+  }
+}
