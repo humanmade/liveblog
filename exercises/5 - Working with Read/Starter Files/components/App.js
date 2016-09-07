@@ -46,6 +46,7 @@ export default class App extends React.Component {
 		/* ======= STEP 1.4 ======= */
 		// Map over the items
 		// Display the item titles in an unordered list
+		// Convert to using dangerouslySetInnerHTML		
 		return null
 	}
 }

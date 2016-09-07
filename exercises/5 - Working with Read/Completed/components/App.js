@@ -59,8 +59,9 @@ export default class App extends React.Component {
 		/* ======= STEP 1.4 ======= */
 		// Map through the items
 		// Display the item titles in an unordered list
+		// Convert to using dangerouslySetInnerHTML
 		return <ul>
-			{this.state.items.map( item => <li key={item.id}> {item.title.rendered}</li> )}
+			{this.state.items.map( item => <li key={item.id} dangerouslySetInnerHTML={{__html:item.title.rendered}} /> )}
 		</ul>
 	}
 }
