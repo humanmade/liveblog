@@ -34,6 +34,10 @@ export default class App extends React.Component {
 		// Make sure to bind 'this' to the loadItems call
 
 	}
+	/* ======= STEP 3.3 ======= */
+	// Add a componentWillUnmout method
+	// Use clearInterval to clear out this.interval
+
 	/* ======= STEP 3.1 ======= */
 	// Move the api.get() call out of componentWillMount
 	// Move api.get() into a custom method called loadItems

@@ -27,13 +27,20 @@ export default class App extends React.Component {
 		// (http://v2.wp-api.org/reference/posts/)
 		/* ======= STEP 3.2 ======= */
 		// Call the loadItems method
-		// Setup a timer to loadItems every 5 seconds
+		// Setup a timer to loadItems every 5 seconds and assign it to this.interval
 		// Make sure to bind 'this' to the loadItems call
 		this.loadItems()
-		setInterval(
-			this.loadItems.bind(this)
+		this.interval = setInterval(
+			this.loadItems.bind(this),
+			5000
 		)
 
+	}
+	/* ======= STEP 3.3 ======= */
+	// Add a componentWillUnmout method
+	// Use clearInterval to clear out this.interval
+	componentWillUnmount() {
+		clearInterval( this.interval )
 	}
 	/* ======= STEP 3.1 ======= */
 	// Move the api.get() call out of componentWillMount
@@ -53,7 +60,7 @@ export default class App extends React.Component {
 		// Map through the items
 		// Display the item titles in an unordered list
 		return <ul>
-			{this.state.items.map( item => <li key={item.id}>{item.title.rendered}</li> )}
+			{this.state.items.map( item => <li key={item.id}> {item.title.rendered}</li> )}
 		</ul>
 	}
 }
