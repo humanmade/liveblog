@@ -4,7 +4,7 @@
   "author": "humanmade",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js"   
+    "start": "node server.js"
   },
   "dependencies": {
     "babel-core": "^6.10.4",
