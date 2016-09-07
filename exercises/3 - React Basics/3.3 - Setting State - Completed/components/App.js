@@ -6,11 +6,11 @@ export default class App extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			count: '0'
+			count: 0
 		}
 	}
 	addToCounter() {
-		let newCount =  parseInt(this.state.count) + 1
+		let newCount =  this.state.count + 1
 		this.setState({count: newCount})
 	}
 	render() {

@@ -1,3 +1,3 @@
-function logName( name ) {
+export default function logName( name ) {
   console.log( name )
-}
+}	

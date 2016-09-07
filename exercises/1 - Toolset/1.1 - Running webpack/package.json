@@ -3,4 +3,7 @@
   "description": "Exercise files for A Week of REST bootcamp.",
   "author": "humanmade",
   "license": "MIT",
+  "dependencies": {
+	  "webpack": "latest"
+  }
 }

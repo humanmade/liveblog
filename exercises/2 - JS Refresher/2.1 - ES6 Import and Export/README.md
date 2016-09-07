@@ -1,6 +1,7 @@
 ### Instructions
 
 - Run 'npm install'
+- Run 'open index.html'
 - Run 'webpack --watch' in Terminal
 - In helpers.js, export logName as default
 - Open the index.js and import the logName function from helpers.js as logName

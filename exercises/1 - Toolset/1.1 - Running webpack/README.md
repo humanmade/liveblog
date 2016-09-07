@@ -2,7 +2,6 @@ In this exercise we go over how to install and setup Webpack from scratch.
 
 ### Instructions
 
-- Install webpack with '$ npm install webpack -g' in Terminal
 - Open package.json and under dependencies add 'webpack' with the version of 'latest'
 - Create a webpack.config.js file
 - Require webpack and assign it to a variable named webpack
