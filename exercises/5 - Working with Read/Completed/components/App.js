@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
 	}
 	/* ======= STEP 3.3 ======= */
-	// Add a componentWillUnmout method
+	// Add a componentWillUnmount method
 	// Use clearInterval to clear out this.interval
 	componentWillUnmount() {
 		clearInterval( this.interval )

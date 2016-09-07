@@ -1,7 +1,7 @@
 /* ======= STEPS =======
  * STEPS  1.1 - 1.4 - Set State from API
  * STEPS 2.1 - Customizing Get Requests
- * STEPS 3.1, 3.2 -Refreshing Load
+ * STEPS 3.1 - 3.3 - Refreshing Load
  *
 */
 import React from 'react'
@@ -35,7 +35,7 @@ export default class App extends React.Component {
 
 	}
 	/* ======= STEP 3.3 ======= */
-	// Add a componentWillUnmout method
+	// Add a componentWillUnmount method
 	// Use clearInterval to clear out this.interval
 
 	/* ======= STEP 3.1 ======= */
@@ -46,7 +46,7 @@ export default class App extends React.Component {
 		/* ======= STEP 1.4 ======= */
 		// Map over the items
 		// Display the item titles in an unordered list
-		// Convert to using dangerouslySetInnerHTML		
+		// Convert to using dangerouslySetInnerHTML
 		return null
 	}
 }
