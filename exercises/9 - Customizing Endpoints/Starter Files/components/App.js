@@ -86,11 +86,11 @@ export default class App extends React.Component {
 						{this.state.items.map( item => {
 							return <li key={item.id}>
 								{/*
-									======= STEP 1.1 =======
+									======= STEP 1.2 =======
 									- Check that the status of post is set to publish and that item.liveblog_likes is set to a number
 									- Display the item.liveblog_likes
 									- Create a button that calls onLike on click and passes in the item id
-								*/}								
+								*/}
 								<span dangerouslySetInnerHTML={{__html:item.title.rendered}} />
 							</li>
 						})}
