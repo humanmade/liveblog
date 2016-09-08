@@ -53,10 +53,6 @@ export default class App extends React.Component {
 	/* ======= STEP 1.1 ======= */
 	// Add an onLike method that accepts an item id as the parameter
 	// Call api.post with a parameter of '/liveblog-likes/v1/posts/' + id + '/like'
-	onLike(id) {
-		this.api.post( '/liveblog-likes/v1/posts/' + id + '/like' )
-			.then( () => this.loadItems() )
-	}
 	loadItems(){
 		let args = {
 			_embed: true,
@@ -94,19 +90,7 @@ export default class App extends React.Component {
 									- Check that the status of post is set to publish and that item.liveblog_likes is set to a number
 									- Display the item.liveblog_likes
 									- Create a button that calls onLike on click and passes in the item id
-								*/}
-								{item.status === 'publish' && typeof item.liveblog_likes === 'number' ?
-									<span>
-										{item.liveblog_likes}
-										<button
-											style={{
-												backgroundColor: 'white',
-												border: 'none'
-											}}
-											onClick={() => this.onLike(item.id)}
-										>💗</button>
-									</span>
-								: null }
+								*/}								
 								<span dangerouslySetInnerHTML={{__html:item.title.rendered}} />
 							</li>
 						})}
