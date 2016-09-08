@@ -10,12 +10,12 @@ const BROKER_URL = 'http://awor.local/auth-broker/'
 export default class App extends React.Component {
 	constructor() {
 		super()
+		/* ======= STEP 1.1 ======= */
+		// Add title to state		
 		this.state = {
 			items: [],
 			user: null,
 			title: '',
-			text: '',
-			isSaving: false
 		}
 		this.api = new api({
 			url: SITE_URL,
@@ -45,8 +45,6 @@ export default class App extends React.Component {
 			.then(() => {
 				return this.interval = setInterval( () => this.loadItems(), 5000 )
 			})
-
-
 	}
 	onLoggedIn() {
 		this.loadUser()
@@ -56,27 +54,40 @@ export default class App extends React.Component {
 		this.setState({ user:null })
 		this.api.removeCredentials()
 	}
-	onCreatePost(status) {
+	/* ======= STEP 1.3 ======= */
+	// Create an onSave method that accepts a parameter of status
+	// Create an item variable and set the title from state and the status from the parameter
+	// Call api.post and pass it the item as the second parameter
+	// Use a promise to set state for title back to empty string and call loadItems()
+	onSave(status) {
 		let post = {
-			content: this.state.text,
-			title: this.state.text.replace(/^(.{50}[^\s]*).*/, "$1"),
+			title: this.state.title,
 			status: status
 		}
+		console.log( post );
 		this.api.post('/wp/v2/posts', post)
-			.then(data => {
-				this.onDidPublish(data)
+			.then(() => {
+				this.setState({title: ''})
+				this.loadItems()
 			})
 	}
-	onApprovePost(post) {
-		this.api.post( '/wp/v2/posts/' + post.id, { status : 'publish' } )
+	/* ======= STEP 2.2 ======= */
+	// Create a new method called onApprove that accepts an id as a parameter
+	// Call api.post and append id to the end of '/wp/v2/posts/'
+	// As a second parameter pass an object with a status property set to publish
+	// Then use a promise to load the items again
+	onApprove(id) {
+		this.api.post( '/wp/v2/posts/' + id, { status : 'publish' } )
 			.then( post => this.loadItems() )
+
 	}
-	onRejectPost(post) {
-		this.api.del( '/wp/v2/posts/' + post.id )
-			.then( () => this.loadItems() )
-	}
-	onDidPublish() {
-		this.loadItems()
+	/* ======= STEP 2.3 ======= */
+	// Create a new method called onReject that accepts id as a parameter
+	// Call api.del and append the id to the end of '/wp/v2/posts/'
+	// Then use a promise to load the items
+	onReject(id) {
+		this.api.del( '/wp/v2/posts/' + id )
+			.then( post => this.loadItems() )
 	}
 	loadItems(){
 		let args = {
@@ -98,30 +109,66 @@ export default class App extends React.Component {
 			.then(user => this.setState({user}))
 	}
 	render() {
-		console.log(this.state.items);
 		return <div>
 			{this.state.user ?
 				<div>
-				<button
-					onClick={() => this.onLogout()}>
-					Logout
-				</button>
-				<ul>
-					{this.state.items.map( item => <li key={item.id} dangerouslySetInnerHTML={{__html:item.title.rendered}} /> )}
-				</ul>
-				<div className="PostBox">
-					<textarea
-						value={this.state.text}
-						onChange={e => this.setState({ text: e.target.value })}
-					/>
-					{this.state.user && this.state.user.capabilities.publish_posts ?
-							<button
-								onClick={() => this.onCreatePost('publish')}>Publish
-							</button>
-						:
-							null
-					}
-				</div>
+					<button
+						onClick={() => this.onLogout()}>
+						Logout
+					</button>
+					<hr />
+					<form className="PostBox">
+						<input
+							value={this.state.title}
+							onChange={e => this.setState({title: e.target.value })} />
+						{' '}
+						{/*
+						======= STEP 1.2 =======
+						// Create an opening and closing form tag
+						// Create an input field with a value equal to the title from state
+						// Attach an onChange event handler and update the state of title with e.target.value
+						// Create a button to "Save Draft" and have it call onSave with the parameter of pending when clicked
+						// Create a button to "Publish" and have it call onSave with the parameter of publish when clicked
+						*/}
+						<button
+							onClick={() => this.onSave('pending')}
+						>Save Draft</button>
+						{' '}
+						<button
+							onClick={() => this.onSave('publish')}
+						>Publish</button>
+					</form>
+					<ul>
+						{this.state.items.map( item => {
+							return <li key={item.id}>
+								<span dangerouslySetInnerHTML={{__html:item.title.rendered}} />
+								{' '}
+								{/*
+								======= STEP 2.1 =======
+								// Write a ternary conditional checking if item status is equal to pending
+								// Create two buttons
+								// Have one button call onApprove on click and pass the item.id
+								// Have the other button call onReject on click and pass the item id as well
+								*/}
+								{item.status === 'pending' ?
+									<span>
+										<button
+											style={{backgroundColor: 'white', border: 'none'}}
+											onClick={() => this.onApprove(item.id)}
+										>👍</button>
+										<button
+											style={{backgroundColor: 'white', border: 'none'}}
+											onClick={() => this.onReject(item.id)}
+										>👎</button>
+									</span>
+								:
+									null
+								}
+
+							</li>
+						})}
+
+					</ul>
 				</div>
 			:
 				<button
@@ -129,16 +176,6 @@ export default class App extends React.Component {
 					Login
 				</button>
 			}
-			{this.state.items.map( item => {
-				<article>
-					<h3
-						key={item.id} dangerouslySetInnerHTML={{__html:item.title.rendered}} />
-					<div
-						key={item.id}
-						dangerouslySetInnerHTML={{__html:item.content.rendered}} />
-				</article>
-			})}
-
 		</div>
 
 	}
