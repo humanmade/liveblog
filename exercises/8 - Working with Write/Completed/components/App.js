@@ -11,7 +11,7 @@ export default class App extends React.Component {
 	constructor() {
 		super()
 		/* ======= STEP 1.1 ======= */
-		// Add title to state		
+		// Add title to state
 		this.state = {
 			items: [],
 			user: null,
@@ -131,10 +131,12 @@ export default class App extends React.Component {
 						// Create a button to "Publish" and have it call onSave with the parameter of publish when clicked
 						*/}
 						<button
+							type='button'
 							onClick={() => this.onSave('pending')}
 						>Save Draft</button>
 						{' '}
 						<button
+							type='button'
 							onClick={() => this.onSave('publish')}
 						>Publish</button>
 					</form>
