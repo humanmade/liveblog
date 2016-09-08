@@ -27,6 +27,7 @@ export default class Post extends React.Component {
 				user={this.props.user}
 				onRejectPost={this.props.onRejectPost}
 				onApprovePost={this.props.onApprovePost}
+				onLikePost={this.props.onLikePost}
 			/>
 		</div>
 	}
