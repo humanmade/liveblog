@@ -15,7 +15,7 @@ export default class App extends React.Component {
 			posts: [],
 			user: null
 		}
-		window.apiHandler = new api({
+		this.api = new api({
 			url: SITE_URL,
 			brokerURL: BROKER_URL,
 			brokerCredentials: {
@@ -26,11 +26,11 @@ export default class App extends React.Component {
 			},
 			callbackURL: CALLBACK_URL
 		})
-		window.apiHandler.restoreCredentials()
+		this.api.restoreCredentials()
 
-		if ( window.apiHandler.hasCredentials() ) {
+		if ( this.api.hasCredentials() ) {
 			this.onLoggedIn()
-		} else if ( window.apiHandler.hasRequestToken() ) {
+		} else if ( this.api.hasRequestToken() ) {
 			this.onLogin()
 		}
 	}
@@ -41,11 +41,11 @@ export default class App extends React.Component {
 	}
 
 	onLogin() {
-		window.apiHandler.authorize().then(() => this.onLoggedIn())
+		this.api.authorize().then(() => this.onLoggedIn())
 	}
 
 	onLoggedIn() {
-		window.apiHandler.get('/wp/v2/users/me', {_envelope: true, context: 'edit'})
+		this.api.get('/wp/v2/users/me', {_envelope: true, context: 'edit'})
 			.then(data => data.body)
 			.then(user => this.setState({ user }))
 			.then(() => this.loadPosts() )
@@ -53,7 +53,7 @@ export default class App extends React.Component {
 
 	onLogout() {
 		this.setState({ user:null })
-		window.apiHandler.removeCredentials()
+		this.api.removeCredentials()
 	}
 
 	loadPosts() {

@@ -40,9 +40,7 @@ export default class App extends React.Component {
 		/* ======= STEP 3.X ======= */
 		// Remove the login call
 	}
-	componentWillUnmount() {
-		clearInterval( this.interval )
-	}
+	componentWillUnmount() { clearInterval( this.interval ) }
 	loadItems(){
 		/* ======= STEP 2.1 ======= */
 		// Try pulling in pending or draft posts
